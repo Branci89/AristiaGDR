@@ -1,0 +1,9 @@
+/* 
+    Created on : 7 mar 2023, 23:48:59
+    Author     : Claudio
+*/
+.tratti_voce {
+    display: flex;
+    justify-content: space-between;
+}
+
