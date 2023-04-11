@@ -167,6 +167,7 @@ div.casella_chat {
 /*Casella Tag*/
 input#tag {
     width: 90px;
+    margin-right: 5px;
 }
 
 /*Casella Messaggio*/
@@ -183,11 +184,12 @@ input#message {
 	margin-bottom: 0px;
 	align-items: baseline;
 	padding: 5px 0px 0px 5px;
+        width: 88%
 }
 
 .dice_form_branci {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	flex-wrap: wrap;
 	margin-top: 10px;
 	margin-bottom: 0px;
@@ -206,5 +208,15 @@ input#message {
     justify-content: center;
     border-left: 2px solid black;
     height: 100px;
+    align-items: center;
+}
+
+input[type="submit"] {
+	width: auto;
+	margin: 0px 0 15px 0;
+}
+
+.d-flex {
+    display: flex;
     align-items: center;
 }

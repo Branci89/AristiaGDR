@@ -71,16 +71,9 @@ if((gdrcd_filter_get($_REQUEST['chat']) == 'yes') && (empty($_SESSION['login']) 
 
             $racial_bonus = gdrcd_query("SELECT bonus_car".gdrcd_filter('num', $id_stats[1])." AS racial_bonus FROM razza WHERE id_razza IN (SELECT id_razza FROM personaggio WHERE nome='".$_SESSION['login']."')");
             $car=gdrcd_filter('num', $car['car_now'] + $racial_bonus['racial_bonus']);
-            $carr=gdrcd_filter('num', $car['car_now'] + $racial_bonus['racial_bonus']) + gdrcd_filter('num', $die) ;
-            $testo="{$_SESSION['login']} Sfida il tratto ".gdrcd_filter('in', $PARAMETERS['names']['stats']['car'.$id_stats[1]]).": ".gdrcd_filter('in', $PARAMETERS['names']['stats']['car'.$id_stats[1].''])." {$car}, ".gdrcd_filter('in', $MESSAGE['chat']['commands']['use_skills']['die'])." " .gdrcd_filter('num', $die).", ".gdrcd_filter('in', $MESSAGE['chat']['commands']['use_skills']['sum'])." {$carr}";
-                      
-            if($carr > (int) $tratto['valoreNegativo'] && $carr < (int) $tratto['valorePositivo']){
-                $testoResult = " SUCCESSO!";
-            } else {
-                $testoResult = " FALLIMENTO!";
-            }
-            
-            $testo = $testo.$testoResult;
+            $total= gdrcd_filter('num',$car + $die);
+            $testo="{$_SESSION['login']} Effettua un lancio contro caratteristica  ".gdrcd_filter('in', $PARAMETERS['names']['stats']['car'.$id_stats[1]]).": ".gdrcd_filter('in', $PARAMETERS['names']['stats']['car'.$id_stats[1].''])." {$car}, ".gdrcd_filter('in', $MESSAGE['chat']['commands']['use_skills']['die'])." " .gdrcd_filter('num', $die).", ".gdrcd_filter('in', $MESSAGE['chat']['commands']['use_skills']['sum'])." {$total}";
+                        
             gdrcd_query("INSERT INTO chat ( stanza, imgs, mittente, destinatario, ora, tipo, testo ) VALUES (".$_SESSION['luogo'].", '".$_SESSION['sesso'].";".$_SESSION['img_razza']."', '".$_SESSION['login']."', '', NOW(), 'C', '{$testo}')");
 
         } 
@@ -158,7 +151,25 @@ if((gdrcd_filter_get($_REQUEST['chat']) == 'yes') && (empty($_SESSION['login']) 
             
             $testo = $testo.$testoResult;
             gdrcd_query("INSERT INTO chat ( stanza, imgs, mittente, destinatario, ora, tipo, testo ) VALUES (".$_SESSION['luogo'].", '".$_SESSION['sesso'].";".$_SESSION['img_razza']."', '".$_SESSION['login']."', '', NOW(), 'C', '{$testo}')");
-    }
+        }
+        elseif(gdrcd_filter('get', $_POST['passions']) != 'no_passion' && !empty(gdrcd_filter('get', $_POST['passions']))){
+            //calcoliamo il risultato del tiro contro la passione 
+            mt_srand((double) microtime() * 1000000);
+            $dice = mt_rand(1,20);
+            $rank = gdrcd_query("SELECT clg.valore,pas.nome FROM clgpassionipersonaggio AS clg LEFT JOIN passioni AS pas on clg.id_passione = pas.id_passione WHERE clg.id_passione =".gdrcd_filter('num', $_POST['passions'])." and clg.personaggio='".$_SESSION['login']."' ");
+            $testo = "{$_SESSION['login']} Sfida la passione {$rank['nome']}. Il Risultato del D20 è {$dice} il valore della passione è {$rank['valore']}: ";
+            if($dice <= (int) $rank['valore']){
+                //successo
+                if($dice == (int) $rank['valore']){
+                    $testo .= " SUCCESSO CRITICO!";
+                } else {
+                    $testo .= " SUCCESSO!";
+                }
+            }else {
+                $testo .= " FALLIMENTO";
+            }            
+            gdrcd_query("INSERT INTO chat ( stanza, imgs, mittente, destinatario, ora, tipo, testo ) VALUES (".$_SESSION['luogo'].", '".$_SESSION['sesso'].";".$_SESSION['img_razza']."', '".$_SESSION['login']."', '', NOW(), 'C', '{$testo}')");
+        }
         
     }
     
