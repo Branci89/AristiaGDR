@@ -312,13 +312,15 @@ $PARAMETERS['mode']['dices'] = 'ON';
 //OFF: Non è attivato il tiro di dado
 
 /* HELP: é possibile aggiungere la possibilità di usare altri tipi di dado implementando questa sezione. E' possibile anche ridurre la scelta dei possibili tipi di dado semplicemente rimuovendo una riga qui.*/
-$PARAMETERS['settings']['skills_dices']['d4'] = 4;
+/*$PARAMETERS['settings']['skills_dices']['d4'] = 4;
 $PARAMETERS['settings']['skills_dices']['d6'] = 6;
 $PARAMETERS['settings']['skills_dices']['d8'] = 8;
 $PARAMETERS['settings']['skills_dices']['d10'] = 10;
 $PARAMETERS['settings']['skills_dices']['d12'] = 12;
-$PARAMETERS['settings']['skills_dices']['d20'] = 20;
 $PARAMETERS['settings']['skills_dices']['d100'] = 100;
+ */
+$PARAMETERS['settings']['skills_dices']['d20'] = 20;
+
 /**    * Fine dadi */
 
 

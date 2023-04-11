@@ -40,7 +40,7 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                 <div class="contenitore-form">
                     <!-- Form messaggi -->
                     <section style="display:flex; align-items:center;">
-                        <div style="width: 80%">
+                        <div style="width: 90%">
                             <form class="chat_form_branci" action="pages/chat.inc.php?ref=10&chat=yes" method="post" target="chat_frame" id="chat_form_messages">
                                 <div class="chat_elements">
                                     <div class="casella_chat tendina-azioni">
@@ -236,7 +236,7 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
 
     <?php } ?>
 
-                                <form style="width: 50%" action="pages/chat.inc.php?ref=30&chat=yes" method="post" target="chat_frame" id="chat_form_danno">
+                                <form style="width: 40%" action="pages/chat.inc.php?ref=30&chat=yes" method="post" target="chat_frame" id="chat_form_danno">
                                     <div style="border-left: 2px solid black;">
                                         <div class="casella_chat">
                                             <input style="width: 80px" name="val_difesa" type="number" value="0" min=0 max=100></input>
@@ -293,6 +293,12 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                         <input type="hidden" name="op" value="calcola_attacco">
                                     </div>
                                 </form>
+                                <form style="width: 10%" action="pages/chat.inc.php?ref=30&chat=yes" method="post" target="chat_frame" id="chat_form_fato">
+                                    <div class="casella_chat">
+                                        <input class="invio-chat" form="chat_form_fato" type="submit" value="Spendi Punto Fato" />
+                                        <input type="hidden" name="op" value="spendi_fato">
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
@@ -312,16 +318,9 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
 
                                 if (REG_ROLE) {
                                     ?>
-                                    <a href="javascript:parent.modalWindow('rolesreg', '', 'popup.php?page=chat_pannelli_index&pannello=segnalazione_role');">
+                                <p><a href="javascript:parent.modalWindow('rolesreg', '', 'popup.php?page=chat_pannelli_index&pannello=segnalazione_role');">
                                         Registra Giocata
-                                    </a>
-
-                                    <a href="#">
-                                        Help Chat
-                                    </a>
-                                    <a href="#" onclick="SelectName()">
-                                        Blocco Note
-                                    </a>
+                                    </a></p>
     <?php } ?>
                             </div>
                         </div>
