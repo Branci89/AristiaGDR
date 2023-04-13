@@ -929,3 +929,11 @@ function setta_tratti_cultura($nomePg, $idCultura, $puntiIniziali) {
 
     gdrcd_query($query);
 }
+
+function imposta_passioni_comuni($nomePg){
+    $result = gdrcd_query("SELECT * FROM passioni WHERE comune = 1 ",'result');
+    while($row = gdrcd_query($result,'fetch')){
+        gdrcd_query("INSERT INTO clgpassionipersonaggio(personaggio,id_passione,valore) VALUES ('{$nomePg}' ,'".$row['id_passione']."', 1) ");
+    }
+    gdrcd_query($result,'free');
+}

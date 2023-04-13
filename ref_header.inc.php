@@ -470,8 +470,8 @@ if((gdrcd_filter_get($_REQUEST['chat']) == 'yes') && (empty($_SESSION['login']) 
     gdrcd_query($query, 'free');
 
     // Prevedo la notifica in caso di nuovi messaggi
-    if($_SESSION['last_message'] > 0 && (isset($isLastMessageFromUser) && !$isLastMessageFromUser) && (isset($add_chat) && $add_chat != '')){
-        $playAudioController = AudioController::play('chat', TRUE);;
+    if($PARAMETERS['mode']['allow_new_chat_audio'] == 'ON' && $_SESSION['last_message'] > 0 && (isset($isLastMessageFromUser) && !$isLastMessageFromUser) && (isset($add_chat) && $add_chat != '')){
+        $playAudioController = AudioController::play('chat', TRUE);
     }
 
         // Aggiorno ultimo messaggio visualizzato

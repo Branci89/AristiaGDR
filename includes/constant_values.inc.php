@@ -3,10 +3,13 @@
 /*Livelli di accesso utente*/
 define('DELETED', -1);
 define('USER', 0);
-define('SUPERUSER', 4);
-define('MODERATOR', 3);
-define('GAMEMASTER', 2);
 define('GUILDMODERATOR', 1);
+define('GAMEMASTER', 2);
+define('MODERATOR', 3);
+define('SUPERUSER', 4);
+
+
+
 
 /*Codici di log*/
 define('BLOCKED', 1);

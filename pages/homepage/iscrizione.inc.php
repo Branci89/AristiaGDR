@@ -553,7 +553,9 @@
                             
                             
                             setta_tratti_cultura(gdrcd_safe_name($_POST['nome']) , gdrcd_filter('num', $_POST['cultura']), $PARAMETERS['settings']['initial_tratti'] );
-
+                            imposta_passioni_comuni(gdrcd_safe_name($_POST['nome']));
+                            
+                            
                             if ($PARAMETERS['mode']['emailconfirmation'] == 'ON') {
                                 echo '<div class="page_title"><h2>' . gdrcd_filter('out', $MESSAGE['register']['welcome']['message']['ok']) . '</h2></div>';
                                 echo '<div class="panels_box"><div class="welcome_message">' . gdrcd_filter('out', $MESSAGE['register']['welcome']['message'][0]) . ' <b>' . gdrcd_filter('out', $PARAMETERS['info']['site_name']) . '</b> ' . gdrcd_filter('out', $MESSAGE['register']['welcome']['message'][1]) . '</div><div class="welcome_message">&nbsp;</div><div class="username">' . gdrcd_filter('out', $MESSAGE['register']['welcome']['message'][3]) . ' <b>' . $email . '</b></div>';

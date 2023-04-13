@@ -249,7 +249,7 @@ $PARAMETERS['settings']['records_per_page'] = 15;//Numero di record per pagina v
 $PARAMETERS['settings']['messages_per_page'] = 40;//Numero di messaggi visualizzati per pagina nel sistema di messaggistica privata
 $PARAMETERS['settings']['messages_limit'] = 50;//Numero di messaggi privati oltre il quale appare il suggerimento di cancellarli
 $PARAMETERS['settings']['minimum_employment'] = 10;//Numero di giorni entro i quali non è possibile scegliere un'altro lavoro o essere esclusi da una gilda.
-$PARAMETERS['settings']['guilds_limit'] = 2;//Numero massimo di gilde a cui si può essere affiliati. Il numero tiene conto delle gilde di cui un personaggio è membro e dell'eventuale lavoro indipendente che svolte. In ogni caso il sistema permette di svolgere un unico lavoro indipendente. La paga giornaliera del personaggio e' la somma degli introiti di tutti i ruoli di gilda e dell'eventuale lavoro che riveste.
+$PARAMETERS['settings']['guilds_limit'] = 1;//Numero massimo di gilde a cui si può essere affiliati. Il numero tiene conto delle gilde di cui un personaggio è membro e dell'eventuale lavoro indipendente che svolte. In ogni caso il sistema permette di svolgere un unico lavoro indipendente. La paga giornaliera del personaggio e' la somma degli introiti di tutti i ruoli di gilda e dell'eventuale lavoro che riveste.
 $PARAMETERS['settings']['resell_price'] = 30; //Percentuale di svalutazione degli oggetti rivenduti al mercato.
 $PARAMETERS['settings']['first_px'] = 0;//Esperienza iniziale. Se il gioco non prevede abilità dovrebbe essere 0.
 $PARAMETERS['settings']['max_hp'] = 100;//Punti ferita.
@@ -268,14 +268,14 @@ $PARAMETERS['settings']['auto_salary'] = 'OFF'; //ON per attivare l'accredito au
 /** * Abilitazione dell'audio in land
  * @author Blancks
  */
-$PARAMETERS['mode']['allow_audio'] = 'ON';
+$PARAMETERS['mode']['allow_audio'] = 'OFF';
 //ON:abilita l'audio per le missive e nella scheda dei personaggi
 //OFF: disabilita l'uso dell'audio
 
 /** * Abilitazione dell'audio in land
  * @author jan90
  */
-$PARAMETERS['mode']['allow_new_chat_audio'] = 'ON';
+$PARAMETERS['mode']['allow_new_chat_audio'] = 'OFF';
 //ON: abilita l'audio per i nuovi messaggi in chat
 //OFF: disabilita l'uso dell'audio
 
@@ -339,7 +339,7 @@ $PARAMETERS['settings']['chat_avatar']['link']['mode'] = 'ON';
 //ON: abilita l'apertura della scheda del personaggio tramite click dell'avatar da chat
 //OFF disabilita
 
-$PARAMETERS['settings']['chat_avatar']['link']['popup'] = 'OFF';
+$PARAMETERS['settings']['chat_avatar']['link']['popup'] = 'ON';
 // Se è abilitata l'apertura della scheda del personaggio dall'avatar da chat, permette di aprire la pagina in un pop
 //ON: la scheda del personaggio viene aperta in una modale
 //OFF la scheda del personaggio viene aperta sulla pagina corrente
