@@ -187,7 +187,8 @@ div.modifica_scheda {
 div.omino_bianco_box {
     margin-left: auto;
     margin-right: auto;
-    width: 450px;
+    /*width: 450px;*/
+    width: 90%;
     height: 300px;
     text-align: center;
 }

@@ -57,7 +57,14 @@ $record = gdrcd_query("SELECT personaggio.pass, personaggio.nome, personaggio.co
  * Se si esce non correttamente dal gioco, sarà possibile entrare dopo 5 minuti dall'ultimo refresh registrato
  * @author Blancks
  */
-if( ! empty($record) and gdrcd_password_check($pass1, $record['pass']) && ($record['permessi'] > -1) && (strtotime($record['ora_entrata']) < strtotime($record['ora_uscita']) || (strtotime($record['ultimo_refresh']) + 300) < time())) {
+$lastRefresh = new DateTime($record['ultimo_refresh'],new DateTimeZone("+0200"));
+$lastRefresh->add(new DateInterval('PT300S')); // adds 300 secs
+$lastRefresh_unix = $lastRefresh->getTimestamp();
+$ora = new DateTime("now", new DateTimeZone("+0200"));
+$ora_unix = $ora->getTimestamp();
+
+if( !empty($record) && gdrcd_password_check($pass1, $record['pass']) && ($record['permessi'] > -1) 
+        && (strtotime($record['ora_entrata']) < strtotime($record['ora_uscita']) || $lastRefresh_unix < $ora_unix )) {
     $_SESSION['login'] = gdrcd_filter_in($record['nome']);
     $_SESSION['cognome'] = $record['cognome'];
     $_SESSION['permessi'] = $record['permessi'];

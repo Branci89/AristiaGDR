@@ -35,11 +35,17 @@ if( ! empty($_SESSION['login'])) {
 /* INFORMAZIONI SU GDRCD */
 $PARAMETERS['info']['GDRCD'] = '5.6.0.5'; //versione di GDRCD
 
-/* PARAMETRI DI CONNESSIONE */
+/* PARAMETRI DI CONNESSIONE 
 $PARAMETERS['database']['username'] = 'testUser';            //nome utente del database
 $PARAMETERS['database']['password'] = '@Fervm2021';            //password del database
 $PARAMETERS['database']['database_name'] = 'testlanddb';    //nome del database
-$PARAMETERS['database']['url'] = 'localhost:3306';        //indirizzo ip del database
+$PARAMETERS['database']['url'] = 'localhost:3306';        //indirizzo ip del database*/
+
+/* PARAMETRI DI CONNESSIONE PROD*/
+$PARAMETERS['database']['username'] = 'brancihotel';            //nome utente del database
+$PARAMETERS['database']['password'] = '';            //password del database
+$PARAMETERS['database']['database_name'] = 'my_brancihotel';    //nome del database
+$PARAMETERS['database']['url'] = 'localhost';        //indirizzo ip del database
 
 /* HELP: Sostituire le diciture inserite tra le virgolette con i parametri di connessione al Database del proprio dominio. Essi sono forniti al momento della registrazione. Se non si e' in possesso di tali parametri consultare le FAQ della homepage dell'host che fornisce il dominio. Se non le si trovano li contattare lo staff dell'host. */
 
@@ -185,9 +191,9 @@ $PARAMETERS['right_column']['box']['frame_presenti']['page'] = 'frame_presenti';
 /* NOMI CHIAVE DEL GIOCO */
 $PARAMETERS['names']['users_name']['sing'] = 'Quirita'; //nome singolare degli utenti
 $PARAMETERS['names']['users_name']['plur'] = 'Quiriti'; //nome plurale degli utenti
-$PARAMETERS['names']['currency']['sing'] = 'Moneta'; //nome singolare della valuta nel gioco
-$PARAMETERS['names']['currency']['plur'] = 'Monete'; //nome plurale della valuta nel gioco
-$PARAMETERS['names']['currency']['short'] = 'MO'; //nome breve della valuta nel gioco
+$PARAMETERS['names']['currency']['sing'] = 'Preziosi'; //nome singolare della valuta nel gioco
+$PARAMETERS['names']['currency']['plur'] = 'Bottino'; //nome plurale della valuta nel gioco
+$PARAMETERS['names']['currency']['short'] = 'BT'; //nome breve della valuta nel gioco
 $PARAMETERS['names']['private_message']['sing'] = 'Messaggio'; //nome dei messaggi privati tra utenti (singolare)
 $PARAMETERS['names']['private_message']['plur'] = 'Messaggi'; //nome dei messaggi privati tra utenti (plurale)
 $PARAMETERS['names']['private_message']['image_file'] = ''; //immagine del link ai messaggi
@@ -198,9 +204,9 @@ $PARAMETERS['names']['forum']['plur'] = 'Bacheche'; //nome dei forum (plurale)
 $PARAMETERS['names']['forum']['image_file'] = ''; //immagine del forum
 $PARAMETERS['names']['forum']['image_file_onclick'] = ''; //immagine al passaggio del mouse del forum
 $PARAMETERS['names']['forum']['image_file_new'] = ''; //immagine nuove attività forum
-$PARAMETERS['names']['guild_name']['sing'] = 'Gilda'; //nome delle gilde nel gioco (singolare)
-$PARAMETERS['names']['guild_name']['plur'] = 'Gilde'; //nome delle gilde nel gioco (plurale)
-$PARAMETERS['names']['guild_name']['lead'] = 'Capogilda'; //nome del capo gilda nel gioco (plurale)
+$PARAMETERS['names']['guild_name']['sing'] = 'Loggia'; //nome delle gilde nel gioco (singolare)
+$PARAMETERS['names']['guild_name']['plur'] = 'Logge'; //nome delle gilde nel gioco (plurale)
+$PARAMETERS['names']['guild_name']['lead'] = 'Rappresentante'; //nome del capo gilda nel gioco (plurale)
 $PARAMETERS['names']['guild_name']['members'] = 'Affiliati'; //componenti della gilda (plurale)
 $PARAMETERS['names']['guild_name']['type'] = 'Allineamento'; //nome del tipo gilda nel gioco (singolare)
 $PARAMETERS['names']['race']['sing'] = 'Razza'; //nome delle razze nel gioco (singolare)
@@ -218,18 +224,19 @@ $PARAMETERS['names']['gamemenu']['menu'] = 'Menu'; //Nome in calce al menu del g
 $PARAMETERS['names']['market_name'] = 'Mercato'; //Nome del mercato
 $PARAMETERS['names']['maps_location'] = 'Alle mappe'; //Appare se il PG si trova su una mappa
 $PARAMETERS['names']['base_location'] = 'In giro'; //Appare nei presenti se non è possibile localizzare il pg
-$PARAMETERS['names']['stats']['car0'] = 'Dimensioni'; //Caratteristiche del personaggio nella scheda
+$PARAMETERS['names']['stats']['car0'] = 'Stazza'; //Caratteristiche del personaggio nella scheda
 $PARAMETERS['names']['stats']['car1'] = 'Forza';
 $PARAMETERS['names']['stats']['car2'] = 'Destrezza';
 $PARAMETERS['names']['stats']['car3'] = 'Resistenza';
 $PARAMETERS['names']['stats']['car4'] = 'Apparenza';
-//$PARAMETERS['names']['stats']['car5'] = 'Percezioni';
+//$PARAMETERS['names']['stats']['car5'] = 'Fato';
 $PARAMETERS['names']['stats']['hitpoints'] = 'Punti ferita';
 
 $PARAMETERS['names']['culture']['sing'] = 'Cultura'; //nome delle razze nel gioco (singolare)
 $PARAMETERS['names']['culture']['plur'] = 'Culture'; //nome delle razze nel gioco (plurale)
 
 /* HELP: I nomi chiave sono i termini con i quali ci si riferisce, all'interno del gioco, ad alcune figure ricorrenti, come il forum interno o lo staff del sito.*/
+
 
 
 /* DATA DELL'AMBIENTAZIONE */
@@ -455,7 +462,7 @@ $PARAMETERS['mode']['chat_from_bottom'] = 'OFF';
 $PARAMETERS['mode']['give_only_if_online'] = 'ON';
 //ON: gli oggetti dei personaggi possono essere ceduti fra loro solo se entrambi online e nella stessa locazione
 //OFF: gli oggetti dei personaggi possono essere ceduti fra loro anche se uno dei due non è online e indipendentemente dalla locazione
-$PARAMETERS['mode']['popup_choise'] = 'ON';
+$PARAMETERS['mode']['popup_choise'] = 'OFF';
 //ON:nel modulo di login nella land mostra un checkbox che consente a scelta dell'utente di aprire il gdr in una pagina popup
 //OFF:il gdr si apre nella pagina completa del browser
 $PARAMETERS['mode']['alert_pm_via_pagetitle'] = 'ON';

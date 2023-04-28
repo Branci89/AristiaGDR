@@ -1,11 +1,11 @@
 /** * Skin Advanced
-	* Il presente files regola gli stili CSS della homepage
-	* @author Blancks
+        * Il presente files regola gli stili CSS della homepage
+        * @author Blancks
 */
 
 /** * STILI DEI CONTENUTI DEL SITO */
 /** * Skin advanced
-	* @author Blancks
+        * @author Blancks
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Gentium+Plus&display=swap');
@@ -15,10 +15,12 @@
 body {
     padding: 0;
     margin: 0;
-    color: #222;
-    font-family: Verdana, Sans;
+    color: #c9c9c9;
+    font-family: 'Gentium Plus' !important;
     font-size: 11px;
-    background: url("") top left repeat;
+    background-image: url("img/sfondo-home.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 body.transparent_body {
@@ -57,7 +59,7 @@ input, textarea, select {
 
 input[type='submit'] {
     width: auto;
-    margin: 5px 0 15px 0;
+    margin: 0px 0 0px 0;
 }
 
 textarea {
@@ -92,16 +94,16 @@ div.warning, div.error {
     color: #970b0b;
 }
 
-div.warning.mysql, 
+div.warning.mysql,
 div.error.mysql {
-	text-align:left;
-	font-weight:normal;
+    text-align:left;
+    font-weight:normal;
 }
 
-div.warning.mysql summary, 
+div.warning.mysql summary,
 div.error.mysql summary{
-	margin-top:1em;
-	font-weight:bold;
+    margin-top:1em;
+    font-weight:bold;
 }
 
 div.link_back {
@@ -138,14 +140,75 @@ div.subtitle {
 
 /** * Stili del form di login
 */
-div.login_form{
-	
-	width:230px;
-	padding:20px 10px;
+div.login_form {
+	width: 85%;
 	margin-top: 20px;
-        margin: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
+.box_home_aristia{
+    padding: 50px 20px 20px 20px;
+    margin:auto;
+    height: 550px;
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top:50px;
+}
+
+.login-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #DBD3D338;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.black_sfondo{
+    background-color: #121212;
+    border-radius: 5px;
+}
+
+a.tasti_home , label.tasti_home {
+    background-color: black;
+    background-image: linear-gradient(90deg, #9f3a06, #d6a779);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bolder;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 20px
+}
+
+label.tasti_home {
+    font-size: 15px;
+}
+
+.login_button_aristia {
+    background-image: linear-gradient(90deg, #9f3a06, #d6a779);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bolder;
+    text-decoration: none;
+    border: none;
+    margin: 0px;
+}
+
+.sfondo_login {
+    padding: 5px;
+    background-color: black;
+    border-radius: 4px
+}
 /** * stile che ingloba i gruppi label/input
 */
 div.login_form div {
@@ -155,26 +218,44 @@ div.login_form div {
 /** * Stile per le label dei form
 */
 span.form_label {
+    background-color: black;
+    background-image: linear-gradient(90deg, #9f3a06, #d6a779);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
     text-align: left;
     font-weight: bolder;
+    margin-right: 10px;
+    text-transform: uppercase;
 }
 
-div.login_form input {
-    width: 145px;
-    margin: 0;
+div.login_form input[type=text], input[type=password], input[type=email] {
+	width: 60%;
+	margin: 0;
+	background-color: #171717;
+	border: none;
+        box-shadow: 0px 0px 11px 0px black inset;
+        height: 28px;
+        border-radius: 4px;
+        color:#aaa8a8;
 }
+
+div.login_form input[type=email] {
+    color: #aaa8a8;
+}
+
 div.login_form input[type=checkbox]{
-	width: auto;
-	vertical-align: middle;
+    width: auto;
+    vertical-align: middle;
 }
 
-/** * Stile per il bottone del login
-*/
-div.login_form input[type='submit'] {
-    display: block;
-    float: right;
-    margin-right: 52px;
-    width: 65px;
+.tasto_rec_passw {
+	background-color: black;
+	color: #aaa8a8;
+	padding: 4px;
+	border: none;
+	border-radius: 6px;
+	width: 86px !important;
+	text-transform: uppercase;
 }
 
 /** * Contenuti principali della pagina
@@ -195,10 +276,10 @@ div.content_body p {
     padding: 0 10px;
 }
 
-div.content_body a {
+/*div.content_body a {
     color: #999;
     text-decoration: underline;
-}
+}*/
 
 /** * Men� di navigazione
 */
@@ -310,7 +391,6 @@ div#footer p {
 div#main {
     height: 100%;
     width: 100%;
-    background: url("") repeat-x top left;
     text-align: center;
 }
 
@@ -318,8 +398,6 @@ div#main {
 */
 div#site_width {
     margin: 0 auto;
-    width: 960px;
-    text-align: left;
 }
 
 /** * Header
@@ -340,8 +418,10 @@ div#header .titlecontent {
 /** * Corpo contenuti della pagina
 */
 div#content {
-    padding: 0 60px 10px 60px;
-    background: url("") repeat-y left top;
+    background: url("img/centro-home.png") no-repeat center;
+    margin-top: 25px;
+    height: 800px;
+    background-size: contain;
 }
 
 /** * Struttura colonna di lato
@@ -354,9 +434,9 @@ div.sidecontent {
 /** * Struttura corpo contenuti pagina 
 */
 div.content_body {
-    width: 620px;
+    width: 50%;
     padding: 10px;
-    float: left;
+    margin: auto;
 }
 
 /** * pie di pagina

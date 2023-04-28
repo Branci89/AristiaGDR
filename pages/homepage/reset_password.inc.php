@@ -45,14 +45,13 @@ if ( ! empty($_POST['email'])) {
  */
 
 ?>
-<strong><?php echo gdrcd_filter('out', $MESSAGE['homepage']['forms']['forgot']); ?></strong>
+<strong style="color:  #807f7f;"><?php echo gdrcd_filter('out', $MESSAGE['homepage']['forms']['forgot']); ?></strong>
     <div class="pass_rec">
         <form action="index.php" method="post">
             <div>
-                <span class="form_label"><label for="passrecovery"><?php echo $MESSAGE['homepage']['forms']['email']; ?></label></span>
-                <input type="text" id="passrecovery" name="email"/>
+                <input type="email" id="passrecovery" name="email" placeholder="<?php echo $MESSAGE['homepage']['forms']['email']; ?>"/>
             </div>
             <?=$feedback?>
-            <input type="submit" value="<?php echo $MESSAGE['homepage']['forms']['new_pass']; ?>"/>
+            <input class="tasto_rec_passw" type="submit" value="<?php echo $MESSAGE['homepage']['forms']['new_pass']; ?>"/>
         </form>
     </div>

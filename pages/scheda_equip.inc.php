@@ -89,8 +89,8 @@
         <h2><?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['page_name']); ?></h2>
     </div>
     <!-- Immagine "omino" e oggetti indossati -->
-    <div class="omino_bianco_box">
-        <table class="omino_bianco_table">
+    <div class="omino_bianco_box" style="display: flex;">
+        <table class="omino_bianco_table w3-twothird">
             <tr>
                 <td>
                     <div class="omino_bianco_head">
@@ -157,6 +157,11 @@
                 </td>
             <tr>
         </table>
+        <section class="w3-third">
+            <header class="w3-header">
+                <h3>Talenti</h3>
+            </header>
+        </section>
     </div>
     <!-- Elenco oggetti nello zaino -->
     <div class="page_title">

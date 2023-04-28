@@ -11,12 +11,12 @@ $MESSAGE['homepage']['main_content']['welcome'] = 'Benvenuto ad Aristia!';
 $MESSAGE['homepage']['main_content']['infos'] = 'Prima di iniziare a realizzare il tuo sito, hai letto la LICENZA D\'USO che accompagna il prodotto? Se non l\'hai ancora fatto premurati gentilmente di leggerla. Troverai le istruzioni su come utilizzare  GDRCD 5.4 nel manuale allegato. Buon diverimento!';
 /*Box informativi*/
 $MESSAGE['homepage']['forms']['access_to'] = 'Accedi';
-$MESSAGE['homepage']['forms']['username'] = 'User';
-$MESSAGE['homepage']['forms']['password'] = 'Pass';
-$MESSAGE['homepage']['forms']['login'] = 'Log in';
-$MESSAGE['homepage']['forms']['forgot'] = 'Hai dimenticato la password?';
+$MESSAGE['homepage']['forms']['username'] = 'Username';
+$MESSAGE['homepage']['forms']['password'] = 'Password';
+$MESSAGE['homepage']['forms']['login'] = 'LOGIN';
+$MESSAGE['homepage']['forms']['forgot'] = 'Recupera password';
 $MESSAGE['homepage']['forms']['email'] = 'E-Mail';
-$MESSAGE['homepage']['forms']['new_pass'] = 'Invia password';
+$MESSAGE['homepage']['forms']['new_pass'] = 'Invia';
 $MESSAGE['homepage']['forms']['online_now'] = 'Utenti connessi';
 $MESSAGE['homepage']['forms']['open_in_popup'] = 'Apri in popup?';
 $MESSAGE['homepage']['registration'] = 'Iscrizione';
