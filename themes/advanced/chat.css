@@ -20,15 +20,23 @@ div.chat_window {
 /**	* Fix per layout elastico
 	* @author Blancks
 */
+
+div.page_body_chat{
+    display: flex;
+    flex-direction: column;
+}
+
 div.chat_box {
-    position: absolute;
+    /*position: absolute;
     top: 50px;
     bottom: 160px;
     left: 10px;
-    right: 10px;
+    right: 10px;*/
+    min-height: 50vh;
+    max-height: 50vh;
     background-image: url("imgs/sfondo-chat.png");
     overflow: auto;
-    font-size: 16px;
+    font-size: 14px;
     text-align: left;
 }
 
@@ -39,10 +47,10 @@ div.chat_box {
 }
 
 div.pagina_frame_chat div.page_body div.panels_box {
-    position: absolute;
+    /*position: absolute;
     bottom: 9px;
     left: 5px;
-    right: 5px;
+    right: 5px;*/
 }
 
 /**	* Fine fix */
@@ -55,11 +63,25 @@ img.chat_avatar {
     display: block;
     float: left;
     position: relative;
+    border-radius: 5px;
+    border: 2px solid #000;
 }
 
 /***** testo della chat *****/
 
 /* Tipi messaggio: (A azione, P parlato, N PNG, M Master, I Immagine, S sussurro, D dado, C skill check, O uso oggetto) */
+
+
+div.msg_box {
+    background-color: #7774743b;
+    border-radius: 5px;
+    border: 1px solid #1d0c06;
+    padding: 10px;
+}
+
+.chat_tag{
+    color: #bea68b;
+}
 
 div.chat_row_A {
     margin-top: 3px;
@@ -67,7 +89,7 @@ div.chat_row_A {
 
 div.chat_row_A span.color2 {
     margin-top: 3px;
-    color: #000;
+    color: gray;
     font-weight: bolder;
 }
 
@@ -77,22 +99,22 @@ div.chat_row_P {
 
 div.chat_row_P span.color2 {
     margin-top: 3px;
-    color: #000;
+    color: goldenrod;
     font-weight: bolder;
 }
 
 div.chat_row_M {
     margin-top: 3px;
     border-width: 2px;
-    border-color: green;
+    border-color: #b28a4f;
     border-style: solid;
     text-align: center;
-    color: green;
+    color: #b28a4f;
 }
 
 div.chat_row_M span.color2 {
     margin-top: 3px;
-    color: #000;
+    color: goldenrod;
     font-weight: bolder;
 }
 
@@ -117,17 +139,18 @@ div.chat_row_S {
 div.chat_row_D {
     margin-top: 3px;
     border-width: 2px;
-    border-color: blue;
+    border-color: #b28a4f;
     border-style: solid;
-    color: cyan;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    
 }
 
 div.chat_row_C {
     margin-top: 3px;
     border-width: 2px;
-    border-color: blue;
+    border-color: #b28a4f;
     border-style: solid;
-    color: cyan;
+    font-family: 'Alegreya Sans SC', sans-serif;
 }
 
 .punti_fato_msg{
@@ -146,16 +169,15 @@ span.chat_name {
     color: #000;
 }
 
-span.chat_msg {
-    color: #333;
-    font-size: 16px;
+div.chat_msg {
+    font-size: 14px;
 }
 
 span.chat_master {
 }
 
 span.chat_me, span.chat_me_master {
-    text-decoration: underline;
+    color: #e7d1a1;
 }
 
 /***** form inserimento *****/
@@ -168,6 +190,17 @@ div.form_row {
 div.casella_chat {
     float: left;
     margin-bottom: 6px;
+}
+
+
+.input_chat_frame{
+    
+width: 80%;
+margin-bottom: 0px;
+box-shadow: 0px 0px 20px 3px inset #000;
+background-color: black;
+border: 1px solid #b28a4f;
+color: #b6a391;
 }
 
 /*Casella Tag*/
@@ -185,10 +218,11 @@ input#message {
 
 .contenitore-form {
     color: #d2c6aa;
-    border: 1px solid #b28a4f;
+    border-top: 1px solid #b28a4f;
     border-radius: 5px 5px 5px 5px;
     padding:5px;
-    background-image: url("imgs/scheda/sfondo-box.png");
+    background-image: url("imgs/sfondo-chat.png");
+    box-shadow: 0px 0px 20px 3px inset #000;
     font-size: 13px;
 }
 
@@ -204,13 +238,13 @@ input#message {
 }
 
 .dice_form_branci {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	margin-top: 10px;
-	margin-bottom: 0px;
-	align-items: baseline;
-	padding: 5px 0px 0px 5px;
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+margin-top: 10px;
+margin-bottom: 0px;
+align-items: baseline;
+padding: 5px 0px 0px 5px;
 }
 
 .chat_elements {

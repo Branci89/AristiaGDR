@@ -19,7 +19,7 @@ gdrcd_query("UPDATE personaggio SET ora_uscita = NOW() WHERE nome='" . gdrcd_fil
     <body class="logout_body">
         <div class="logout_box">
             <span class="logout_text"><?php echo gdrcd_filter('out', $_SESSION['login']) . ' ' . $MESSAGE['logout']['confirmation']; ?></span>
-            <div class="logout_message">La tua leggenda attenderà il tuo ritorno!</div>
+            <div class="logout_message">La tua leggenda attendera` il tuo ritorno!</div>
             <div class="logout_image_box">
                 <div class="logout_text">
                     <a class="link_home_personal" href="index.php">

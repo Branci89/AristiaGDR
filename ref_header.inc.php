@@ -422,7 +422,7 @@ if((gdrcd_filter_get($_REQUEST['chat']) == 'yes') && (empty($_SESSION['login']) 
                     $add_chat .= '<span class="chat_tag"> ['.gdrcd_filter('out', $row['destinatario']).']</span>';
                 }
                 $add_chat .=  ($row['tipo'] === 'P') ? ': </span> ' : '</span> ';
-                $add_chat .= '<span class="chat_msg">'.gdrcd_chatme($_SESSION['login'], gdrcd_chatcolor(gdrcd_filter('out', $row['testo']))).'</span>';
+                $add_chat .= '<div class="chat_msg"><div class="msg_box">'.gdrcd_chatme($_SESSION['login'], gdrcd_chatcolor(gdrcd_filter('out', $row['testo'])) ).'</div></div>';
 
                 /**    * Fix problema visualizzazione spazi vuoti con i sussurri
                  * @author eLDiabolo

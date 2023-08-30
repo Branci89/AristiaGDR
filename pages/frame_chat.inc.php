@@ -7,7 +7,7 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
 ?>
 <div class="pagina_frame_chat">
     <div class="page_title"><h2><?php echo $info['nome']; ?></h2></div>
-    <div class="page_body">
+    <div class="page_body_chat">
         <?php
         // Costruisco il controllore audio
         echo AudioController::build('chat');
@@ -46,7 +46,7 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                <form class="chat_form_branci" action="pages/chat.inc.php?ref=10&chat=yes" method="post" target="chat_frame" id="chat_form_messages">
                                 <div class="chat_elements">
                                     <div class="casella_chat tendina-azioni">                                       
-                                        <select name="type" id="type">
+                                        <select class="input_chat_frame" name="type" id="type">
                                             <option value="0"><?php echo gdrcd_filter('out', $MESSAGE['chat']['type'][0]); //parlato  ?></option>
                                             <option value="1"><?php echo gdrcd_filter('out', $MESSAGE['chat']['type'][1]); //azione  ?></option>
                                             <option value="4"><?php echo gdrcd_filter('out', $MESSAGE['chat']['type'][4]); //sussurro  ?></option>
@@ -79,7 +79,7 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                             
                                         </span>
                                          
-                                        <input name="tag" id="tag" value="" placeholder="<?php
+                                        <input class="input_chat_frame" name="tag" id="tag" value="" placeholder="<?php
                                             echo gdrcd_filter('out', $MESSAGE['chat']['tag']['info']['tag'] . $MESSAGE['chat']['tag']['info']['dst']);
                                             if ($_SESSION['permessi'] >= GAMEMASTER) {
                                                 echo gdrcd_filter('out', $MESSAGE['chat']['tag']['info']['png']);
@@ -90,21 +90,21 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                     </div>
 
                                     <div class="casella_chat" style="width: 70%;">
-                                        <input name="message" id="message" value="" style="width:100% !important;" placeholder="Messaggio/Azione"/>
+                                        <input class="input_chat_frame" name="message" id="message" value="" style="width:100% !important;" placeholder="Messaggio/Azione"/>
                                     </div>
 
                                     <div class="casella_chat" id="inputchat">
-                                        <input id="invia" type="submit" value="<?php echo gdrcd_filter('out', $MESSAGE['interface']['forms']['submit']); ?>" />
-                                        <input type="hidden" name="op" value="new_chat_message" />
+                                        <input class="input_chat_frame" id="invia" type="submit" value="<?php echo gdrcd_filter('out', $MESSAGE['interface']['forms']['submit']); ?>" />
+                                        <input class="input_chat_frame" type="hidden" name="op" value="new_chat_message" />
                                     </div>
 
                                 </div>
                             </form>
                             <!-- fine Form messaggi -->
-                            <!<!-- Inizio form Punti fato -->
+                            <!-- Inizio form Punti fato -->
                             <form style="width: 10%; margin-top: 10px; padding: 5px 0px 0px 5px;" action="pages/chat.inc.php?ref=30&chat=yes" method="post" target="chat_frame" id="chat_form_fato">
                                     <div class="casella_chat">
-                                        <input class="invio-chat" form="chat_form_fato" type="submit" value="Spendi Punto Fato" />
+                                        <input class="invio-chat input_chat_frame" form="chat_form_fato" type="submit" value="Spendi Punto Fato" />
                                         <input type="hidden" name="op" value="spendi_fato">
                                     </div>
                             </form>
@@ -121,15 +121,15 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                             <?php
                                             $categories = gdrcd_query("SELECT distinct categoria FROM abilita WHERE id_razza=-1 OR id_razza IN (SELECT id_razza FROM personaggio WHERE nome = '" . $_SESSION['login'] . "') ", 'result');
                                             ?>
-                                            <select name="id_ab" id="id_ab">
-                                                <option value="no_skill">Usa Abilità</option>
+                                                <select class="input_chat_frame" name="id_ab" id="id_ab">
+                                                    <option class="input_chat_frame" value="no_skill">Usa Abilità</option>
                                                 <?php
                                                 while ($categoria = gdrcd_query($categories, 'fetch')) {
                                                     $result = gdrcd_query("SELECT id_abilita, nome, categoria FROM abilita WHERE categoria ='" . $categoria['categoria'] . "' and (id_razza=-1 OR id_razza IN (SELECT id_razza FROM personaggio WHERE nome = '" . $_SESSION['login'] . "')) ORDER BY nome", 'result');
                                                     echo '<optgroup label="' . $categoria['categoria'] . '" >';
                                                     while ($row = gdrcd_query($result, 'fetch')) {
                                                         ?>
-                                                        <option value="<?php echo $row['id_abilita']; ?>">
+                                                    <option class="input_chat_frame" value="<?php echo $row['id_abilita']; ?>">
                                                         <?php echo gdrcd_filter('out', $row['nome']); ?>
                                                         </option>
                                                         <?php
@@ -147,11 +147,11 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                             <?php 
                                             $tratti = gdrcd_query("SELECT DISTINCT id_tratto, nome_tratto from anag_tratti ORDER BY nome_tratto", 'result');
                                             ?>
-                                            <select name="tratto_c" id="id_tratto" style="min-width: 150px">
-                                                <option value="no_trait">Tratto Caratteriale</option>
+                                            <select class="input_chat_frame" name="tratto_c" id="id_tratto" style="min-width: 150px">
+                                                <option class="input_chat_frame" value="no_trait">Tratto Caratteriale</option>
                                                 <?php 
                                                 while($row = gdrcd_query($tratti,'fetch')){
-                                                    echo '<option value="'.$row['id_tratto'].'">'.$row['nome_tratto'].'</option>';
+                                                    echo '<option class="input_chat_frameS" value="'.$row['id_tratto'].'">'.$row['nome_tratto'].'</option>';
                                                 }
                                                 gdrcd_query($tratti, 'free');
                                                 ?>
@@ -163,7 +163,7 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                              <?php
                                              $passioni = gdrcd_query("SELECT pas.nome, clg.id_passione, clg.valore FROM passioni as pas LEFT JOIN clgpassionipersonaggio clg ON pas.id_passione = clg.id_passione WHERE clg.personaggio = '".$_SESSION['login']."' ", 'result');
                                              ?>
-                                             <select name="passions" id="id_passione" style="min-width: 100px">
+                                             <select class="input_chat_frame" name="passions" id="id_passione" style="min-width: 100px">
                                                  <option value="no_passion">Passioni</option>
                                                  <?php 
                                                 while($row = gdrcd_query($passioni,'fetch')){
@@ -175,7 +175,7 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                              </select>
                                          </div>
                                             <div class="casella_chat">
-                                                <select name="id_stats" id="id_stats">
+                                                <select class="input_chat_frame" name="id_stats" id="id_stats">
                                                     <option value="no_stats">Usa Caratteristica</option>
                                                     <?php
                                                     /*** Questo modulo aggiunge la possibilità di eseguire prove col dado e caratteristica.
@@ -198,14 +198,14 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                             <?php
                                         } else {
 
-                                            echo '<input type="hidden" name="id_ab" id="id_ab" value="no_skill">';
+                                            echo '<input class="input_chat_frame" type="hidden" name="id_ab" id="id_ab" value="no_skill">';
                                         }
 
                                         if ($PARAMETERS['mode']['dices'] == 'ON') {
                                             ?>
 
                                             <div class="casella_chat">
-                                                <select name="dice" id="dice" style="min-width: 60px">
+                                                <select class="input_chat_frame" name="dice" id="dice" style="min-width: 60px">
                                                     <option value="no_dice">Dado</option>
                                                     <?php
                                                     /*** Tipi di dado personalizzati da config
@@ -224,7 +224,7 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                             <?php
                                         } else {
 
-                                            echo '<input type="hidden" name="dice" id="dice" value="no_dice">';
+                                            echo '<input class="input_chat_frame" type="hidden" name="dice" id="dice" value="no_dice">';
                                         }
 
                                         if ($PARAMETERS['mode']['skillsystem'] == 'ON') {
@@ -234,12 +234,12 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                             <?php
                                         } else {
 
-                                            echo '<input type="hidden" name="id_item" id="id_item" value="no_item">';
+                                            echo '<input class="input_chat_frame" type="hidden" name="id_item" id="id_item" value="no_item">';
                                         }
                                         ?>
 
                                         <div class="casella_chat">
-                                            <input class="invio-chat" type="submit" value="Usa!" />
+                                            <input class="invio-chat input_chat_frame" type="submit" value="Usa!" />
                                             <input type="hidden" name="op" value="take_action">
                                         </div>
 
@@ -253,12 +253,12 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                 <form style="width: 35%" action="pages/chat.inc.php?ref=30&chat=yes" method="post" target="chat_frame" id="chat_form_danno">
                                     <div style="border-left: 2px solid black;">
                                         <div class="casella_chat">
-                                            <input style="width: 50px" name="val_difesa" type="number" value="0" min="0" max="100"></input>
+                                            <input class="input_chat_frame" style="width: 50px" name="val_difesa" type="number" value="0" min="0" max="100"></input>
                                             </br>
                                             <label aria-label="valore danno">Difesa PG</label>
                                         </div>
                                         <div class="casella_chat">
-                                            <input style="width: 50px" name="val_forza" value="0" type="number"  min="0" max="100"></input>
+                                            <input class="input_chat_frame" style="width: 50px" name="val_forza" value="0" type="number"  min="0" max="100"></input>
                                             </br>
                                             <label aria-label="valore danno">Forza Atk</label>
                                         </div>
@@ -271,16 +271,16 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                                             ?>
 
 
-                                            <select name="id_ab" id="id_ab">
+                                            <select class="input_chat_frame" name="id_ab" id="id_ab">
 
-                                                <option value="no_skill"></option>
+                                                <option class="input_chat_frame" value="no_skill"></option>
                                                 <?php
                                                 while ($categoria = gdrcd_query($categories, 'fetch')) {
                                                     $result = gdrcd_query("SELECT id_abilita, nome, categoria FROM abilita WHERE categoria ='" . $categoria['categoria'] . "' and (id_razza=-1 OR id_razza IN (SELECT id_razza FROM personaggio WHERE nome = '" . $_SESSION['login'] . "')) ORDER BY nome", 'result');
                                                     echo '<optgroup label="' . $categoria['categoria'] . '" >';
                                                     while ($row = gdrcd_query($result, 'fetch')) {
                                                         ?>
-                                                        <option value="<?php echo $row['id_abilita']; ?>">
+                                                <option class="input_chat_frame" value="<?php echo $row['id_abilita']; ?>">
                                                         <?php echo gdrcd_filter('out', $row['nome']); ?>
                                                         </option>
                                                         <?php
@@ -297,13 +297,13 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
 
                                         </div>
                                         <div class="casella_chat">
-                                            <input style="width: 50px" name="val_bonus" type="number" min="0" max="100"></input>
+                                            <input class="input_chat_frame" style="width: 50px" name="val_bonus" type="number" min="0" max="100"></input>
                                             </br>
                                             <label aria-label="valore danno">Bonus</label>
                                         </div>
                                     </div>
                                     <div class="casella_chat">
-                                        <input class="invio-chat" form="chat_form_danno" type="submit" value="Attacca" />
+                                        <input class="invio-chat input_chat_frame" form="chat_form_danno" type="submit" value="Attacca" />
                                         <input type="hidden" name="op" value="calcola_attacco">
                                     </div>
                                 </form>
