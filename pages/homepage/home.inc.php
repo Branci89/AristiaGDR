@@ -16,11 +16,11 @@
         }
         ?>>
             <div>
-                <div>
+                <div class="box_input_login">
                     <span class="form_label"><label class="tasti_home" for="username"><?php echo $MESSAGE['homepage']['forms']['username']; ?></label></span>
                     <input type="text" id="username" name="login1"/>
                 </div>
-                <div>
+                <div class="box_input_login">
                     <span class="form_label"><label class="tasti_home" for="password"><?php echo $MESSAGE['homepage']['forms']['password']; ?></label></span>
                     <input type="password" id="password" name="pass1"/>
                 </div>

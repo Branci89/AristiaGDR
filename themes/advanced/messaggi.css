@@ -1,73 +1,1 @@
-/****************************************************************************/
-/* STILE DEI MESSAGGI PRIVATI */
-
-/* HELP: Da qui è possibile modificare:
-- I font ed i colori dei messaggi privati
-- Le dimensioni e la posizione delle finestre dei messaggi privati
-- Lo sfondo dei messaggi privati */
-
-/****************************************************************************/
-
-div.pagina_messages_center {
-}
-
-/*Testo delle colonne*/
-div.pagina_messages_center div.elementi_elenco {
-    height: 40px;
-}
-
-/*Testo delle colonne*/
-div.pagina_messages_center div.pulsanti_elenco {
-    display: inline-block;
-}
-
-div.pagina_messages_center div.pulsanti_elenco form {
-    float: left;
-}
-
-/*************************/
-/*Visualizzazione del messaggio singolo*/
-div.read_message_box {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-div.read_message_box div.infos {
-    clear: both;
-    text-align: left;
-}
-
-div.read_message_box div.infos span.title {
-    font-style: italic;
-}
-
-div.read_message_box div.infos span.body {
-    font-weight: bold;
-}
-
-div.read_message_box_text {
-    clear: both;
-    border: solid 1px #d9d9d9;
-    background-color: #999;
-    padding: 10px;
-    margin: 20px 0 5px 0;
-    -moz-border-radius: 5px; /* Bordi arrotondati */
-    -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
-}
-
-div.read_message_box_forms {
-    clear: both;
-    margin-bottom: 40px;
-}
-
-div.read_message_box_form {
-    float: right;
-}
-
-div.read_message_box_form input {
-    height: 20px;
-    width: 20px;
-}
+/****************************************************************************//* STILE DEI MESSAGGI PRIVATI *//* HELP: Da qui è possibile modificare:- I font ed i colori dei messaggi privati- Le dimensioni e la posizione delle finestre dei messaggi privati- Lo sfondo dei messaggi privati *//****************************************************************************/div.pagina_messages_center {    background-image: linear-gradient(to top, #d07442, #d48754, #d79869, #daa97e, #deba96, #deba96, #deba96, #deba96, #daa97e, #d79869, #d48754, #d07442);    padding:3px;    border:1px solid #000;    border-radius:20px 20px 3px 3px;}div.pagina_messages_center div.page_body {    background-image:url("imgs/sfondo-chat.png");    border:1px solid #000;}div.pagina_messages_center div.page_title {    background-image: url("imgs/sfondo-box.png");}div.pagina_messages_center div.elenco_record_gioco table, div.pagina_messages_center div.elenco_record_gioco table td.casella_elemento, div.pagina_messages_center div.elenco_record_gioco table div.elementi_elenco {    background-image:url("imgs/sfondo-chat.png");}div.pagina_messages_center div.elenco_record_gioco table {    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.8);    margin-top:5px;    margin-bottom:10px;}div.pagina_messages_center div.page_title {    border-radius:15px 15px 0px 0px;    margin-bottom:2px;    border:1px solid #000;    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.4) inset;}div.pagina_messages_center div.page_title h2 {    margin-bottom:0px;    border-bottom:none;    color: #FFDBAD;    font-family: 'Alegreya SC', serif;    text-transform: uppercase;    font-size:18px;    font-weight:normal;    padding:0px;    text-shadow: 2px 2px 1px #000;}div.pagina_messages_center div.link_back {    background-color: #000;    border-top:1px solid #826741;}div.pagina_messages_center div.link_back_top {    border-top:none;    border-bottom:1px solid #826741;}div.pagina_messages_center div.elenco_record_gioco div.link_back {    background-color:transparent;    border-top:none;}div.pagina_messages_center div.elenco_record_gioco div.link_back a {    background-image:none;    text-transform:none;    font-size: 16px;    color: #c9c9c9;}div.pagina_messages_center div.link_back a {    background-color: #000;    background-image: linear-gradient(to top, #9f3a06, #9f3a06, #9E6F41, #d6a779, #d6a779, #d6a779);    -webkit-background-clip: text;    -moz-background-clip: text;    background-clip: text;    color: transparent;    text-transform: uppercase;    font-size:18px;}div.pagina_messages_center form#multiple_delete, div.pagina_messages_center form#viewed_delete {    background-color:#000;    padding:2px;    border-radius:5px;    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.4);    cursor:pointer;}div.pagina_messages_center form#multiple_delete:hover, div.pagina_messages_center form#viewed_delete:hover {    font-weight:bold;}div.pagina_messages_center form#multiple_delete {    margin-right:10px;}div.pagina_messages_center form#multiple_delete input[type="submit"], div.pagina_messages_center form#viewed_delete input[type="submit"] {    background-image: linear-gradient(to top, #9f3a06, #9f3a06, #9E6F41, #d6a779, #d6a779, #d6a779);    -webkit-background-clip: text;    -moz-background-clip: text;    background-clip: text;    color: transparent;    margin:0px;    border:none;    text-transform:uppercase;    cursor:pointer;}div.pagina_messages_center div.elenco_record_gioco table td {    border:1px solid #826741;}/*Testo delle colonne*/div.pagina_messages_center div.elementi_elenco {    height: 40px;}/*Testo delle colonne*/div.pagina_messages_center div.pulsanti_elenco {    display: inline-block;}div.pagina_messages_center div.pulsanti_elenco form {    float: left;}/*************************//*Visualizzazione del messaggio singolo*/div.read_message_box {    width: 80%;    margin-left: auto;    margin-right: auto;}div.read_message_box div.infos {    clear: both;    text-align: left;}div.read_message_box div.infos span.title {    font-style: italic;}div.read_message_box div.infos span.body {    font-weight: bold;}div.read_message_box_text {    clear: both;    border: 1px solid #826741;    background-color:rgba(255,255,255,0.03);    padding: 10px;    margin: 20px 0 5px 0;    -moz-border-radius: 5px; /* Bordi arrotondati */    -webkit-border-radius: 5px;    -khtml-border-radius: 5px;    border-radius: 5px;    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.8);}div.read_message_box_forms {    clear: both;    margin-bottom: 40px;}div.read_message_box_form {    float: right;}div.read_message_box_form input {    height: 20px;    width: 20px;}/*Compilazione nuovo messaggio*/form.form_messaggi input, form.form_messaggi textarea, form.form_messaggi select {    background-color:#2D201B;    outline:none;    border:1px solid #826741;    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.8) inset;    color: #c9c9c9;}

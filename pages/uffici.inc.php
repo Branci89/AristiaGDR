@@ -1,12 +1,12 @@
 <div class="pagina_uffici">
     <div class="page_title">
-        <h2><?php echo gdrcd_filter('out', $PARAMETERS['office_page_name']); ?></h2>
+        <div class="link_menu_presenti"><?php echo gdrcd_filter('out', $PARAMETERS['office_page_name']); ?></div>
     </div>
-    <div class="page_body">
+    <div class="page_body_uffici">
         <?php /* Generazione automatica del menu del gioco */
         foreach($PARAMETERS['office'] as $link_menu) {
             if((empty($link_menu['url']) === false) && (empty($link_menu['text']) === false) && (isset($link_menu['access_level']) === true) && ($link_menu['access_level'] <= $_SESSION['permessi'])) {
-                echo '<div class="link_menu">';
+                echo '<div class="link_menu_presenti">';
                 if(empty($link_menu['image_file']) === false) {
                     echo '<img src="themes/'.$PARAMETERS['themes']['current_theme'].'/imgs'.$link_menu['image_file'].'" />';
                 }

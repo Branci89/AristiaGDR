@@ -1,4 +1,4 @@
-<div class="pagina_scheda_px">
+<div class="pagina_uffici">
     <?php /*HELP: */ ?>
 
     <?php

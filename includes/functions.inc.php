@@ -903,6 +903,7 @@ function gdrcd_brute_debug($args) {
  * @return void 
  */
 function setta_tratti_cultura($nomePg, $idCultura, $puntiIniziali) {
+    gdrcd_query("DELETE from tratti WHERE personaggio = '".$nomePg."' LIMIT 1");
     $res = gdrcd_query("SELECT COUNT(*) as countTratti FROM anag_tratti");
     $countTratti = (int) $res['countTratti'];
     $cultura = gdrcd_query("SELECT * FROM cultura WHERE id_cultura = " . $idCultura);
@@ -936,4 +937,14 @@ function imposta_passioni_comuni($nomePg){
         gdrcd_query("INSERT INTO clgpassionipersonaggio(personaggio,id_passione,valore) VALUES ('{$nomePg}' ,'".$row['id_passione']."', 1) ");
     }
     gdrcd_query($result,'free');
+   
+}
+
+function calcolcaPuntiFerita($costituzione){
+    if($costituzione <=10){
+        return 1;
+    }
+    if($costituzione > 10){
+        return 1+ floor((($costituzione - 10 ) / 5));
+    }
 }

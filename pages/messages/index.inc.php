@@ -24,6 +24,14 @@ $numresults = gdrcd_query($result, 'num_rows');
 $totaleresults = gdrcd_query(gdrcd_query($sqlMessages, 'result'), 'num_rows');
 
 ?>
+
+<!-- link scrivi messaggio -->
+<div class="link_back link_back_top">
+    <a href="main.php?page=messages_center&op=create">
+        <?php echo $MESSAGE['interface']['messages']['new']; ?>
+    </a>
+</div>
+
 <div class="elenco_record_gioco">
     <div class="link_back">
         [

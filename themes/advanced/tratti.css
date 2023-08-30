@@ -7,3 +7,16 @@
     justify-content: space-between;
 }
 
+.box_tratto_elem {
+    background-image: url("imgs/scheda/sfondo-note.png");
+    padding: 5px;
+    color: #FFDBAD;
+    text-transform: uppercase;
+    
+}
+
+.riga_tratto {
+    display: flex;
+    justify-content: space-evenly;
+}
+

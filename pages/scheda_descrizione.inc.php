@@ -1,4 +1,4 @@
-<div class="pagina_scheda_storia">
+<div class="pagina_uffici">
     <?php /*HELP: */
     //Se non e' stato specificato il nome del pg
     if(isset($_REQUEST['pg']) === false) {
@@ -17,7 +17,7 @@
     </div>
     <div class="page_body">
         <div class="panels_box">
-            <?php /*Oggetti nello zaino*/
+            <?php 
             $personaggio = gdrcd_query("SELECT descrizione, affetti FROM personaggio WHERE nome = '".gdrcd_filter('in', $_REQUEST['pg'])."'");
 
             ?>
@@ -91,12 +91,12 @@
                     } ?>
         </div>
         </div>
-        <!-- Link a piè di pagina -->
-        <div class="link_back">
-            <a href="main.php?page=scheda&pg=<?php echo gdrcd_filter('url', $_REQUEST['pg']); ?>"><?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['link']['back']); ?></a>
-        </div>
+        
     </div>
     </div>
     
-
+<!-- Link a piè di pagina -->
+        <div class="link_back">
+            <a href="main.php?page=scheda&pg=<?php echo gdrcd_filter('url', $_REQUEST['pg']); ?>"><?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['link']['back']); ?></a>
+        </div>
 </div><!-- Pagina -->

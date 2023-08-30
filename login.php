@@ -160,6 +160,33 @@ if($_SESSION['login'] != '') {
                 gdrcd_query("UPDATE personaggio SET banca = banca + ".$stipendio.", ultimo_stipendio = NOW() WHERE nome = '".$_SESSION['login']."'");
             }
         }
+        
+        /*Auto-Assegnazione degli EXP ogni 15gg
+        $pgQry = "SELECT lastExp FROM personaggio WHERE nome = '".$_SESSION['login']."'";
+        $result = gdrcd_query($pgQry,'query');
+        $lastExp = new DateTime($result['lastExp']);
+        $oggi = new DateTime("now");
+        $diff = $oggi->diff($lastExp)->days;
+        if($diff >= $PARAMETERS['settings']['day_per_exp']){
+            //Bene, se sono qui detro allora prendo i record nelle chat da LastEXP + 15 gg così da calcolare tutti con lo stesso range
+            //Devo contare le azioni con messaggio più lungo di 1000 caratteri e considerare dal 10 record in su.
+            //
+            // il limite delle azioni sono di 1200 caratteri, ma i punti li ottieni già a 1000. L'idea era che raggiungendo un certo numero di azioni si guadagnava un tot di punti exp/gloria ogni due settimane con un cap. Tutte le chat vanno bene. I "pacchetti" di exp arrivano ogni due settimane, divisi in 
+            //    1) pacchetto: 10 azioni = 10 exp 
+            //    2) pacchetto: 100 azioni = 100 exp 
+            //    3) pacchetto: 300 azioni = 200 exp 
+            
+            $queryChat = "SELECT COUNT(*) AS azioni FROM chat "
+                    . "WHERE mittente = '".$_SESSION['login']."' AND "
+                    . "ora >= '". $result['lastExp'] ."' AND length(testo) > ".$PARAMETERS['settings']['valid_action_lengh']." AND tipo in ('P','A') ";
+            $exp_package = 0;
+            $validAction = gdrcd_query($queryChat,'query');
+            if($validAction['azioni'] >= 10 && $validAction['azioni'] < 100 ){ $exp_package = 10 ;}
+            if($validAction['azioni'] >= 100 && $validAction['azioni'] < 300 ){ $exp_package = 100 ;}
+            if($validAction['azioni'] >= 300  ){ $exp_package = 200 ;}
+            
+            gdrcd_query("UPDATE personaggio SET esperienza = esperienza + ".$exp_package.", lastExp = NOW()  WHERE nome = '".$_SESSION['login']."' LIMIT 1", 'query');
+        }*/
 
         if($PARAMETERS['mode']['log_back_location'] == 'OFF') {
             $_SESSION['luogo'] = '-1';

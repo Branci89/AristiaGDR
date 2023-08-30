@@ -171,7 +171,7 @@
                         }
                         break;
                 }
-                $meteo = $meteo_cond . " - " . $gradi . "&deg;C "; //.Tempo();
+                $meteo = '<img src="../imgs/meteo/'.strtolower($meteo_cond).'.png" class="immagine_meteo" />';
             } else {
                 $meteo = gdrcd_filter('out', $record['meteo']);
             }
@@ -182,12 +182,12 @@
                 <div class="meteo_date">
                     <?php echo strftime('%d') . '/' . strftime('%m') . '/' . (strftime('%Y') + $PARAMETERS['date']['offset']); ?>
                 </div>
-                <div class="meteo_luna">
+                <!-- <div class="meteo_luna">
                     <?php if (defined('MOON') and MOON) {
-                        $moon = gdrcd_lunar_phase();
-                        echo '<img title="' . $moon['title'] . '"  src="themes/' . gdrcd_filter('out', $PARAMETERS['themes']['current_theme']) . '/imgs/luna/' . $moon['phase'] . '.png">';
+                        //$moon = gdrcd_lunar_phase();
+                        //echo '<img title="' . $moon['title'] . '"  src="themes/' . gdrcd_filter('out', $PARAMETERS['themes']['current_theme']) . '/imgs/luna/' . $moon['phase'] . '.png">';
                     } ?>
-                </div>
+                </div> -->
 
                 <div class="meteo">
                     <?php

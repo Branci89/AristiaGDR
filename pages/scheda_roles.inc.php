@@ -1,4 +1,4 @@
-<div class="pagina_scheda_roles">
+<div class="pagina_uffici">
     <!-- Titolo della pagina -->
     <div class="page_title">
         <h2>

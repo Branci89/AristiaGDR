@@ -28,15 +28,20 @@
                         sesso = '" . gdrcd_filter('in', $_POST['modifica_sesso']) . "', 
                         id_razza = " . gdrcd_filter('num', $_POST['modifica_razza']) . ", 
                         banca=" . gdrcd_filter('num', $_POST['modifica_banca']) . ", 
-                        salute_max=" . gdrcd_filter('num', $_POST['modifica_salute_max']) . " 
-                    WHERE   nome = '" . gdrcd_filter('in', $_REQUEST['pg']) . "' 
+                        salute_max=" . gdrcd_filter('num', $_POST['modifica_salute_max']) . ",
+                        id_cultura = ".gdrcd_filter('num', $_POST['cultura'])." ,
+                        natura = '".gdrcd_filter('out', $_POST['natura'])."' , 
+                        talenti = '". gdrcd_filter('in', $_POST['modifica_talenti'])."' 
+                        WHERE   nome = '" . gdrcd_filter('in', $_REQUEST['pg']) . "' 
                         AND permessi <= " . $_SESSION['permessi']);
+        
+        setta_tratti_cultura(gdrcd_filter('in', $_REQUEST['pg']), gdrcd_filter('num', $_POST['cultura']) ,$PARAMETERS['settings']['initial_tratti']);
         echo '<div class="warning">' . gdrcd_filter('out', $MESSAGE['warning']['modified']) . '</div>';
     } else
     {
         /*Carico le informazioni del PG*/
 
-        $record = gdrcd_query("SELECT sesso, id_razza, descrizione, affetti, url_img, url_media, car0, car1, car2, car3, car4, car5, salute_max, banca  FROM personaggio WHERE nome='" . gdrcd_filter('in',
+        $record = gdrcd_query("SELECT sesso, id_razza,talenti, descrizione,id_cultura, natura, affetti, url_img, url_media, car0, car1, car2, car3, car4, car5, salute_max, banca  FROM personaggio WHERE nome='" . gdrcd_filter('in',
                 $_REQUEST['pg']) . "'");
     }
     ?>
@@ -248,6 +253,43 @@
                                     </td>
                                 <tr>
                             </table>
+                            
+                            <div class="form_field">
+                                <div class="form_label">Cultura</div>
+                                <select name="cultura">
+                                    <?php 
+                                        $queryCult = gdrcd_query("SELECT id_cultura, nome_cultura FROM cultura", "result");
+                                        while($rowCultura = gdrcd_query($queryCult,'fetch')){  ?>
+                                    <option value="<?php echo $rowCultura['id_cultura']; ?>" <?php echo $rowCultura['id_cultura']==$record['id_cultura'] ? 'SELECTED': ''; ?> ><?php echo $rowCultura['nome_cultura']; ?></option>
+                                        <?php } ?>
+                                </select>
+                                
+                            </div>
+                            
+                            <div class="form_field">
+                                <div class="form_label">Natura:</div>
+                                <select name="natura">
+                                    <option value="mo" <?php if (gdrcd_filter('get', $_POST['natura']) == 'mo') {
+                                        echo 'SELECTED';
+                                    } ?> >
+                                        <?php echo gdrcd_filter('out', $MESSAGE['register']['fields']['nature_mortal']); ?>
+                                    </option>
+                                    <option value="hg" <?php if (gdrcd_filter('get', $_POST['natura']) == 'hg') {
+                                        echo 'SELECTED';
+                                    } ?> >
+                                        <?php echo gdrcd_filter('out', $MESSAGE['register']['fields']['nature_halfgod']); ?>
+                                    </option>
+                                </select>
+                            </div>
+                            
+                            <div class="form_field">
+                                <div class="form_label">Talenti:</div>
+                                <div class='form_field'>
+                                    <textarea type="textbox" name="modifica_talenti"
+                                              class="form_textarea"><?php
+                                                  echo gdrcd_filter('out', $record['talenti']);?></textarea>
+                                </div>
+                            </div>
                         </div>
 
 

@@ -43,8 +43,13 @@
                 </div>
        <?php } ?>
     </header>
-
-    <div class="w3-row w3-padding w3-border" >
+    <div class="w3-row">
+    <div class="link_back_abilita">
+        <a href="main.php?page=scheda&pg=<?php echo gdrcd_filter('url', $_REQUEST['pg']); ?>"><?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['link']['back']); ?></a>
+    </div>
+    </div>
+    <div style="width: 100%">
+    <div class="w3-row pagina_uffici" >
         <?php
         $result = gdrcd_query("SELECT DISTINCT id_tratto from anag_tratti ORDER BY id_tratto", 'result');
 
@@ -53,8 +58,8 @@
         while ($row = gdrcd_query($result, 'fetch')) {
             $anag_tratto = gdrcd_query("SELECT * FROM anag_tratti WHERE id_tratto='" . $row['id_tratto'] . "' ");
             echo ''
-            . '<div class="tratti_voce_label w3-quarter">' . $anag_tratto['nome_tratto'] . '</div>'
-            . '<div class="tratti_voce w3-rest">'
+            . '<div class="tratti_voce_label w3-quarter box_tratto_elem">' . $anag_tratto['nome_tratto'] . '</div>'
+            . '<div class="tratti_voce w3-rest box_tratto_elem">'
             . ' <div class="tratti_voce_label w3-third">' . $anag_tratto['nomeBasso'] . ' (' . $anag_tratto['valoreBasso'] . ') </div>'
             . ' <div class="valore_tratto w3-third">' . $tratti[$row['id_tratto']] . '/20</div>'
             . ' <div class="tratti_voce_label w3-third">' . $anag_tratto['nomeAlto'] . ' (' . $anag_tratto['valoreAlto'] . ') </div>'
@@ -63,7 +68,7 @@
         }
         $result = gdrcd_query("SELECT pa.id_passione as id_passione, pa.nome as nome, clg.valore as valore  FROM clgpassionipersonaggio as clg LEFT JOIN passioni as pa ON clg.id_passione = pa.id_passione WHERE personaggio='" . $_REQUEST['pg'] . "' AND comune = 1", 'result');
         echo '</div>';
-        echo '<div class="w3-third" style="border-left: 2px solid grey">';
+        echo '<div class="w3-third">';
         echo '<h3>Passioni</h3>';
         while ($row = gdrcd_query($result, 'fetch')) {
             echo '<div class="w3-row"><div class="w3-half">' . $row['nome'] . '</div><div>' . $row['valore'] . '</div></div>';
@@ -84,13 +89,13 @@
 
     <?php if (($tratti['da_spendere'] > 0 && $_REQUEST['pg'] == $_SESSION['login']) || $_SESSION['permessi'] >= MODERATOR) { ?>
 
-        <div style="padding: 25px;">
+        <div class="pagina_uffici">
             <header class="w3-header">
                 <h3>Distribuzione dei Tratti Caratteriali</h3>
             </header>
-            <details>
+            <details >
                 <summary>Espandi</summary>
-                <div class="w3-border">
+                <div >
 
                     <form method="post" action="main.php?page=scheda_tratti&pg=<?php echo gdrcd_filter('url', $_REQUEST['pg']); ?>">
                         <header>
@@ -118,7 +123,7 @@
 
 <?php } ?>
     <?php if ($_SESSION['permessi'] >= MODERATOR) { ?>
-        <section>
+    <div class="pagina_uffici">
         <?php
         $query = "SELECT nome FROM personaggio WHERE permessi < " . SUPERUSER . " ORDER BY nome";
         $result = gdrcd_query($query, 'result');
@@ -178,11 +183,10 @@
                 </div>
             </form>
           </details>
-        </section>   
+        </div>   
 <?php } ?>
-    <div class="link_back" >
-        <a href="main.php?page=scheda&pg=<?php echo gdrcd_filter('url', $_REQUEST['pg']); ?>"> <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['link']['back']); ?> </a>
     </div>
+    
 </div>
 
 

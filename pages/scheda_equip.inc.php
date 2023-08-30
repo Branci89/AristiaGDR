@@ -1,4 +1,4 @@
-<div class="pagina_scheda_equip">
+<div class="pagina_uffici">
     <?php /*HELP: */
     //Se non e' stato specificato il nome del pg
     if(isset($_REQUEST['pg']) === false) {
@@ -7,7 +7,7 @@
     }
     /*Visualizzo la pagina*/
     /*Rilevo il genere del PG*/
-    $query = "SELECT sesso FROM personaggio WHERE personaggio.nome = '".gdrcd_filter('get', $_REQUEST['pg'])."'";
+    $query = "SELECT sesso, talenti FROM personaggio WHERE personaggio.nome = '".gdrcd_filter('get', $_REQUEST['pg'])."'";
     $result = gdrcd_query($query, 'result');
     //Se non esiste il pg
     if(gdrcd_query($result, 'num_rows') == 0) {
@@ -74,6 +74,7 @@
     gdrcd_query($result, 'free');
 
     $sesso = $record['sesso'];
+    $talenti = $record['talenti'];
 
     $result = gdrcd_query("SELECT oggetto.id_oggetto, oggetto.nome, oggetto.urlimg AS immagine, clgpersonaggiooggetto.posizione FROM clgpersonaggiooggetto JOIN oggetto ON clgpersonaggiooggetto.id_oggetto = oggetto.id_oggetto WHERE clgpersonaggiooggetto.posizione > 1 AND clgpersonaggiooggetto.nome='".gdrcd_filter('get', $_REQUEST['pg'])."'", 'result');
 
@@ -161,6 +162,9 @@
             <header class="w3-header">
                 <h3>Talenti</h3>
             </header>
+            <div class="box_note_fato">
+                <?php echo gdrcd_bbcoder($talenti); ?>
+            </div>
         </section>
     </div>
     <!-- Elenco oggetti nello zaino -->

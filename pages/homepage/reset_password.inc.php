@@ -45,7 +45,7 @@ if ( ! empty($_POST['email'])) {
  */
 
 ?>
-<strong style="color:  #807f7f;"><?php echo gdrcd_filter('out', $MESSAGE['homepage']['forms']['forgot']); ?></strong>
+<strong class="stringa_recupero_password"><?php echo gdrcd_filter('out', $MESSAGE['homepage']['forms']['forgot']); ?></strong>
     <div class="pass_rec">
         <form action="index.php" method="post">
             <div>

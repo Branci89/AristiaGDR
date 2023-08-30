@@ -34,10 +34,11 @@ $info = gdrcd_query("SELECT nome, stanza_apparente, invitati, privata, proprieta
                 <iframe src="pages/chat.inc.php?ref=30&chat=yes" class="iframe_chat" id="chat_frame" name="chat_frame" frameborder="0" allowtransparency="true">
                 </iframe>
             </div>
+            
             <div id='pagina_chat' class="chat_box">
             </div>
             <div class="panels_box">
-                <div class="contenitore-form">
+                <div class="contenitore-form chat_pannello">
                     <!-- Form messaggi -->
                     <section class="d-flex">
                         <div style="width: 90%">

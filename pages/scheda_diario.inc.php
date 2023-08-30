@@ -1,4 +1,4 @@
-<div class="pagina_scheda_diario">
+<div class="pagina_uffici">
     <?php
     //Se non e' stato specificato il nome del pg
     if (isset($_REQUEST['pg']) === false) {

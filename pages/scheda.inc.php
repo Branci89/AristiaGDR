@@ -50,9 +50,7 @@
         exit();
     }
     ?>
-    <div class="page_title">
-        <h2><?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['page_name']); ?></h2>
-    </div>
+
     <div class="page_body">
         <?php
         /**         * Controllo e avviso che è ora di cambiare password
@@ -68,218 +66,251 @@
             }
         }
         ?>
-        <div class="w3-bar"><!-- Menu scheda -->
-            <?php include ('scheda/menu.inc.php'); ?>
+
+        <div class="page_body">    
+                <?php include ('scheda/menu.inc.php'); ?>
+            <div style="display: flex; width: 100%;">       
+                <img style="width: 90px" src="../themes/advanced/imgs/scheda/bordurina-sx.png" alt="bordo sinistro"/>
+                    <section class="riquadro-profilo">
+                        <div class="ritratto"><!-- nome, ritratto, ultimo ingresso -->
+                            <div class="tasti_log_amministra">
+                                <!-- Se maggiore di moderatore -->
+                                <?php if ($_SESSION['permessi'] >= MODERATOR) { ?>
+                                    <!-- LOG -->
+                                    <a class="log_amministra" href="main.php?page=scheda_log&pg=<?php echo gdrcd_filter('out', $_REQUEST['pg']); ?>">
+                                        <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['menu']['log']); ?>
+                                    </a>
+
+                                    <!-- AMMINISTRA -->
+                                    <a class="log_amministra" href="main.php?page=scheda_gst&pg=<?php echo gdrcd_filter('out', $_REQUEST['pg']); ?>">
+                                        <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['menu']['gst']); ?>
+                                    </a>
+                                <?php } ?>
+                            </div>
+                            <div class="ritratto_avatar">
+                                <img src="<?php echo gdrcd_filter('fullurl', $personaggio['url_img']); ?>" class="ritratto_avatar_immagine" />
+                            </div>
+                            <a href="main.php?page=messages_center&op=create&destinatario=<?php gdrcd_filter('url', $personaggio['nome']); ?>"
+                               class="link_invia_messaggio">
+                                <div class="ritratto_invia_messaggio"><!-- Link invia messaggio -->
+                                    Invia Messaggio
+                                    <img src="../themes/advanced/imgs/scheda/pennino.png"
+                                         alt="<?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['send']) . ' ' . gdrcd_filter('out', $PARAMETERS['names']['private_message']['sing']) . ' ' . gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['to']) . ' ' . gdrcd_filter('out', $personaggio['nome']); ?>"
+                                         title="<?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['send']) . ' ' . gdrcd_filter('out', $PARAMETERS['names']['private_message']['sing']) . ' ' . gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['to']) . ' ' . gdrcd_filter('out', $personaggio['nome']); ?>"
+                                         class="link_messaggio_forum">
+                                </div>
+                            </a>
+                            <div class="iscritto_da">
+                                <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['first_login']) . ' ' . gdrcd_format_date($personaggio['data_iscrizione']); ?>
+                            </div>
+                            <?php if (gdrcd_format_date($record['ora_entrata']) != '00/00/0000') { ?>
+                                <div class="ultimo_ingresso">
+                                    <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['last_login']) . ' ' . gdrcd_format_date($personaggio['ora_entrata']); ?>
+                                </div>
+                            <?php } ?>
+
+                        </div>
+                        <!-- nome, ritratto, ultimo ingresso, abiti portati -->
+                        <div class="profilo"><!-- Punteggi, salute, status, classe, razza. -->
+                            <div class="sub-profilo">
+                                <header style="display: flex; justify-content: space-evenly; align-items: center">
+                                    <h1> <?php echo gdrcd_filter('out', $personaggio['nome']); ?> <?php echo gdrcd_filter('out', $personaggio['cognome']); ?></h1>
+                                    <?php
+                                    # Modifica
+                                    if (($_REQUEST['pg'] == $_SESSION['login']) || ($_SESSION['permessi'] >= GUILDMODERATOR)) { ?>
+                                        <div class="tasto_modifica">
+                                            <a  href="main.php?page=scheda_modifica&pg=<?php echo gdrcd_filter('out',$_REQUEST['pg']); ?>">
+                                                <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['menu']['update']); ?>
+                                            </a>
+                                            <img src="../themes/advanced/imgs/scheda/ingranaggi.png"
+                                                 alt="<?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['menu']['update']); ?>"
+                                                 title="<?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['menu']['update']); ?>"
+                                                 class="link_messaggio_forum">
+                                        </div>
+                                    <?php } ?>
+                                </header>
+
+                                <div class="profilo-info profilo-info-box">
+                                    <div class="w3-quarter box-stat-profilo">
+                                        <?php if ($record['permessi'] > 0) { ?>
+                                            <div class="profilo_voce">
+                                                <div class="profilo_voce_label">
+                                                    <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['role']); ?>:
+                                                </div>
+                                                <div class="profilo_voce_valore">
+                                                    <?php
+                                                    switch ($personaggio['permessi']) {
+                                                        case USER:
+                                                            $permessi_utente = '';
+                                                            break;
+                                                        case GUILDMODERATOR:
+                                                            $permessi_utente = $PARAMETERS['names']['guild_name']['lead'];
+                                                            break;
+                                                        case GAMEMASTER:
+                                                            $permessi_utente = $PARAMETERS['names']['master']['sing'];
+                                                            break;
+                                                        case MODERATOR:
+                                                            $permessi_utente = $PARAMETERS['names']['moderators']['sing'];
+                                                            break;
+                                                        case SUPERUSER:
+                                                            $permessi_utente = $PARAMETERS['names']['administrator']['sing'];
+                                                            break;
+                                                    }
+                                                    echo gdrcd_filter('out', $permessi_utente) . ' <img src="imgs/icons/permessi' . (int) $personaggio['permessi'] . '.gif" class="profilo_img_gilda" />';
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+
+
+
+                                        <div class="profilo_voce">
+                                            <div class="profilo_voce_label">
+                                                <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['occupation']); ?>:
+                                            </div>
+                                            <div class="profilo_voce_valore">
+                                                <?php
+//carico le gilde
+                                                $guilds = gdrcd_query("SELECT ruolo.nome_ruolo, ruolo.gilda, ruolo.immagine, gilda.visibile, gilda.nome AS nome_gilda FROM clgpersonaggioruolo LEFT JOIN ruolo ON ruolo.id_ruolo = clgpersonaggioruolo.id_ruolo LEFT JOIN gilda ON ruolo.gilda = gilda.id_gilda WHERE clgpersonaggioruolo.personaggio = '" . gdrcd_filter('in', $personaggio['nome']) . "'", 'result');
+                                                if (gdrcd_query($guilds, 'num_rows') == 0) {
+                                                    echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['uneployed']);
+                                                } else {
+                                                    while ($row_guilds = gdrcd_query($guilds, 'fetch')) {
+                                                        if ($row_guilds['gilda'] == -1) {
+                                                            echo '<img class="profilo_img_gilda"  src="themes/' . $PARAMETERS['themes']['current_theme'] . '/imgs/guilds/' . gdrcd_filter('out', $row_guilds['immagine']) . '" alt="' . gdrcd_filter('out', $row_guilds['nome_ruolo']) . '" title="' . gdrcd_filter('out', $row_guilds['nome_ruolo']) . '" />';
+                                                        } else {
+                                                            if (($row_guilds['visibile'] == 1) || ($_SESSION['permessi'] >= USER)) {
+                                                                echo '<a href="main.php?page=servizi_gilde&id_gilda=' . $row_guilds['gilda'] . '"><img class="profilo_img_gilda"  src="themes/' . $PARAMETERS['themes']['current_theme'] . '/imgs/guilds/' . gdrcd_filter('out', $row_guilds['immagine']) . '" alt="' . gdrcd_filter('out', $row_guilds['nome_ruolo'] . ' - ' . $row_guilds['nome_gilda']) . '" title="' . gdrcd_filter('out', $row_guilds['nome_ruolo'] . ' - ' . $row_guilds['nome_gilda']) . '" /></a>';
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="profilo_voce">
+                                            <div class="profilo_voce_label">
+                                                <?php echo gdrcd_filter('out', $PARAMETERS['names']['race']['sing']); ?>:
+                                            </div>
+                                            <div class="profilo_voce_valore">
+                                                <?php
+                                                if ((empty($personaggio['sing_f']) == false) || (empty($personaggio['sing_m']) == false)) {
+                                                    echo ($personaggio['sesso'] == 'f') ? gdrcd_filter('out', $personaggio['sing_f']) : gdrcd_filter('out', $personaggio['sing_m']);
+                                                } else {
+                                                    echo gdrcd_filter('out', $PARAMETERS['names']['race']['sing'] . ' ' . $MESSAGE['interface']['sheet']['profile']['no_race']);
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="profilo_voce">
+                                            <div class="profilo_voce_label">
+                                                Natura:
+                                            </div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo $personaggio['natura'] == 'mo' ? gdrcd_filter('out', $MESSAGE['register']['fields']['nature_mortal']) : gdrcd_filter('out', $MESSAGE['register']['fields']['nature_halfgod']);  ?>
+                                            </div>
+                                        </div>
+                                        <div class="profilo_voce">
+                                            <div class="profilo_voce_label">
+                                                <?php echo gdrcd_filter('out', $PARAMETERS['names']['culture']['sing']); ?>:
+                                            </div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo gdrcd_filter('out', isset($personaggio['nome_cultura']) ? $personaggio['nome_cultura'] : 'Da Implementare'); ?>
+                                                <img class="cultura_ico" src="../imgs/culture/<?php echo $personaggio['nome_cultura'].'_ico.png'; ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w3-quarter box-stat-profilo">
+                                        <div class="profilo_voce">
+                                            <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car0']); ?></div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo gdrcd_filter('out', $personaggio['car0'] + $personaggio['bonus_car0'] + $bonus_oggetti['BO0']); ?>
+                                            </div>
+
+                                        </div>
+                                        <div class="profilo_voce">
+
+
+                                            <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car1']); ?></div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo gdrcd_filter('out', $personaggio['car1'] + $personaggio['bonus_car1'] + $bonus_oggetti['BO0']); ?>
+                                            </div>
+
+                                        </div>
+                                        <div class="profilo_voce">
+
+
+                                            <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car2']); ?></div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo gdrcd_filter('out', $personaggio['car2'] + $personaggio['bonus_car2'] + $bonus_oggetti['BO0']); ?>
+                                            </div>
+
+                                        </div>
+                                        <div class="profilo_voce">
+
+
+                                            <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car3']); ?></div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo gdrcd_filter('out', $personaggio['car3'] + $personaggio['bonus_car3'] + $bonus_oggetti['BO0']); ?>
+                                            </div>
+
+                                        </div>
+                                        <div class="profilo_voce">
+
+
+                                            <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car4']); ?></div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo gdrcd_filter('out', $personaggio['car4'] + $personaggio['bonus_car4'] + $bonus_oggetti['BO0']); ?>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="w3-quarter box-stat-profilo">
+                                        <div class="profilo_voce">
+                                            <div class="profilo_voce_label">
+                                                <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['healt']); ?>:
+                                            </div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo calcolcaPuntiFerita((int) $personaggio['car3']) . '/' . gdrcd_filter('out', floor($personaggio['salute_max'])) ?>
+                                            </div>
+                                        </div>
+                                        <div class="profilo_voce">
+                                            <div class="profilo_voce_label">
+                                                <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['experience']); ?>:
+                                            </div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo gdrcd_filter('out', floor($personaggio['esperienza'])); ?>
+                                            </div>
+                                        </div>
+                                        <div class="profilo_voce">
+                                            <div class="profilo_voce_label">
+                                                <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['punti_fato']); ?>:
+                                            </div>
+                                            <div class="profilo_voce_valore">
+                                                <?php echo gdrcd_filter('out', $personaggio['punti_fato']); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="">
+
+                                    <h2> <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['status']); ?> </h2>
+
+                                    <div class="box_note_fato">
+                                        <?php echo gdrcd_filter('out', $personaggio['stato']); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Punteggi, salute, status, classe, razzat -->
+                    </section>
+                    <img style="width: 90px" src="../themes/advanced/imgs/scheda/bordurina-dx.png" alt="bordo destro"/>
         </div>
-        <div class="page_body">
-            <div class="ritratto"><!-- nome, ritratto, ultimo ingresso -->
-
-
-                <div class="ritratto_avatar">
-                    <img src="<?php echo gdrcd_filter('fullurl', $personaggio['url_img']); ?>" class="ritratto_avatar_immagine" />
-                </div>
-                <div class="iscritto_da">
-                    <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['first_login']) . ' ' . gdrcd_format_date($personaggio['data_iscrizione']); ?>
-                </div>
-                <?php if (gdrcd_format_date($record['ora_entrata']) != '00/00/0000') { ?>
-                    <div class="ultimo_ingresso">
-                        <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['last_login']) . ' ' . gdrcd_format_date($personaggio['ora_entrata']); ?>
-                    </div>
-                <?php } ?>
-                <div class="ritratto_invia_messaggio"><!-- Link invia messaggio -->
-                    <a href="main.php?page=messages_center&op=create&destinatario=<?= gdrcd_filter('url', $personaggio['nome']); ?>"
-                       class="link_invia_messaggio">
-                           <?php if (empty($PARAMETERS['names']['private_message']['image_file']) === false) { ?>
-                            <img src="<?php echo $PARAMETERS['names']['private_message']['image_file']; ?>"
-                                 alt="<?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['send']) . ' ' . gdrcd_filter('out', $PARAMETERS['names']['private_message']['sing']) . ' ' . gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['to']) . ' ' . gdrcd_filter('out', $personaggio['nome']); ?>"
-                                 title="<?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['send']) . ' ' . gdrcd_filter('out', $PARAMETERS['names']['private_message']['sing']) . ' ' . gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['to']) . ' ' . gdrcd_filter('out', $personaggio['nome']); ?>"
-                                 class="link_messaggio_forum">
-                                 <?php
-                             } else {
-                                 echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['send']) . ' ' . gdrcd_filter('out', strtolower($PARAMETERS['names']['private_message']['sing'])) . ' ' . gdrcd_filter('out', $MESSAGE['interface']['sheet']['send_message_to']['to']) . ' ' . gdrcd_filter('out', $personaggio['nome']);
-                             }
-                             ?>
-                    </a>
-                </div>
-            </div>
-            <!-- nome, ritratto, ultimo ingresso, abiti portati -->
-            <div class="profilo"><!-- Punteggi, salute, status, classe, razza. -->
-                <div class="titolo_box">
-                    <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['box_title']['profile']); ?>
-                </div>
-                <?php if ($record['permessi'] > 0) { ?>
-                    <div class="profilo_voce">
-                        <div class="profilo_voce_label">
-                            <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['role']); ?>:
-                        </div>
-                        <div class="profilo_voce_valore">
-                            <?php
-                            switch ($personaggio['permessi']) {
-                                case USER:
-                                    $permessi_utente = '';
-                                    break;
-                                case GUILDMODERATOR:
-                                    $permessi_utente = $PARAMETERS['names']['guild_name']['lead'];
-                                    break;
-                                case GAMEMASTER:
-                                    $permessi_utente = $PARAMETERS['names']['master']['sing'];
-                                    break;
-                                case MODERATOR:
-                                    $permessi_utente = $PARAMETERS['names']['moderators']['sing'];
-                                    break;
-                                case SUPERUSER:
-                                    $permessi_utente = $PARAMETERS['names']['administrator']['sing'];
-                                    break;
-                            }
-                            echo gdrcd_filter('out', $permessi_utente) . ' <img src="imgs/icons/permessi' . (int) $personaggio['permessi'] . '.gif" class="profilo_img_gilda" />';
-                            ?>
-                        </div>
-                    </div>
-                <?php } ?>
-
-                <div class="profilo_voce">
-                    <h2><span class="titolo_box">
-                        <?php echo gdrcd_filter('out', $personaggio['nome']); ?>
-                    </span>
-                    <span class="ritratto_nome_cognome">
-                        <?php echo gdrcd_filter('out', $personaggio['cognome']); ?>
-                    </span></h2>
-                </div>
-
-                <div class="profilo_voce">
-                    <div class="profilo_voce_label">
-                        <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['occupation']); ?>:
-                    </div>
-                    <div class="profilo_voce_valore">
-                        <?php
-                        //carico le gilde
-                        $guilds = gdrcd_query("SELECT ruolo.nome_ruolo, ruolo.gilda, ruolo.immagine, gilda.visibile, gilda.nome AS nome_gilda FROM clgpersonaggioruolo LEFT JOIN ruolo ON ruolo.id_ruolo = clgpersonaggioruolo.id_ruolo LEFT JOIN gilda ON ruolo.gilda = gilda.id_gilda WHERE clgpersonaggioruolo.personaggio = '" . gdrcd_filter('in', $personaggio['nome']) . "'", 'result');
-                        if (gdrcd_query($guilds, 'num_rows') == 0) {
-                            echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['uneployed']);
-                        } else {
-                            while ($row_guilds = gdrcd_query($guilds, 'fetch')) {
-                                if ($row_guilds['gilda'] == -1) {
-                                    echo '<img class="profilo_img_gilda"  src="themes/' . $PARAMETERS['themes']['current_theme'] . '/imgs/guilds/' . gdrcd_filter('out', $row_guilds['immagine']) . '" alt="' . gdrcd_filter('out', $row_guilds['nome_ruolo']) . '" title="' . gdrcd_filter('out', $row_guilds['nome_ruolo']) . '" />';
-                                } else {
-                                    if (($row_guilds['visibile'] == 1) || ($_SESSION['permessi'] >= USER)) {
-                                        echo '<a href="main.php?page=servizi_gilde&id_gilda=' . $row_guilds['gilda'] . '"><img class="profilo_img_gilda"  src="themes/' . $PARAMETERS['themes']['current_theme'] . '/imgs/guilds/' . gdrcd_filter('out', $row_guilds['immagine']) . '" alt="' . gdrcd_filter('out', $row_guilds['nome_ruolo'] . ' - ' . $row_guilds['nome_gilda']) . '" title="' . gdrcd_filter('out', $row_guilds['nome_ruolo'] . ' - ' . $row_guilds['nome_gilda']) . '" /></a>';
-                                    }
-                                }
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-
-                <div class="profilo_voce">
-                    <div class="profilo_voce_label">
-                        <?php echo gdrcd_filter('out', $PARAMETERS['names']['race']['sing']); ?>:
-                    </div>
-                    <div class="profilo_voce_valore">
-                        <?php
-                        if ((empty($personaggio['sing_f']) == false) || (empty($personaggio['sing_m']) == false)) {
-                            echo ($personaggio['sesso'] == 'f') ? gdrcd_filter('out', $personaggio['sing_f']) : gdrcd_filter('out', $personaggio['sing_m']);
-                        } else {
-                            echo gdrcd_filter('out', $PARAMETERS['names']['race']['sing'] . ' ' . $MESSAGE['interface']['sheet']['profile']['no_race']);
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="profilo_voce">
-                    <div class="profilo_voce_label">
-                        <?php echo gdrcd_filter('out', $PARAMETERS['names']['culture']['sing']); ?>:
-                    </div>
-                    <div class="profilo_voce_valore">
-                        <?php echo gdrcd_filter('out', isset($personaggio['nome_cultura']) ? $personaggio['nome_cultura'] : 'Da Implementare'); ?>
-                    </div>
-                </div>
-
-                <hr />
-                <div class="profilo_voce">
-
-                    
-                        <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car0']); ?></div>
-                        <div class="profilo_voce_valore">
-                            <?php echo gdrcd_filter('out', $personaggio['car0'] + $personaggio['bonus_car0'] + $bonus_oggetti['BO0']); ?>
-                        </div>
-                   
-                </div>
-                <div class="profilo_voce">
-
-                    
-                        <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car1']); ?></div>
-                        <div class="profilo_voce_valore">
-                            <?php echo gdrcd_filter('out', $personaggio['car1'] + $personaggio['bonus_car1'] + $bonus_oggetti['BO0']); ?>
-                        </div>
-                   
-                </div>
-                <div class="profilo_voce">
-
-                    
-                        <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car2']); ?></div>
-                        <div class="profilo_voce_valore">
-                            <?php echo gdrcd_filter('out', $personaggio['car2'] + $personaggio['bonus_car2'] + $bonus_oggetti['BO0']); ?>
-                        </div>
-                   
-                </div>
-                 <div class="profilo_voce">
-
-                    
-                        <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car3']); ?></div>
-                        <div class="profilo_voce_valore">
-                            <?php echo gdrcd_filter('out', $personaggio['car3'] + $personaggio['bonus_car3'] + $bonus_oggetti['BO0']); ?>
-                        </div>
-                   
-                </div>
-                 <div class="profilo_voce">
-
-                    
-                        <div class="profilo_voce_label"> <?php echo gdrcd_filter('out', $PARAMETERS['names']['stats']['car4']); ?></div>
-                        <div class="profilo_voce_valore">
-                            <?php echo gdrcd_filter('out', $personaggio['car4'] + $personaggio['bonus_car4'] + $bonus_oggetti['BO0']); ?>
-                        </div>
-                   
-                </div>
-                <hr />
-                <div class="profilo_voce">
-                    <div class="profilo_voce_label">
-                        <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['healt']); ?>:
-                    </div>
-                    <div class="profilo_voce_valore">
-                        <?php echo gdrcd_filter('out', floor($personaggio['salute'])) . '/' . gdrcd_filter('out', floor($personaggio['salute_max'])) ?>
-                    </div>
-                </div>
-                <div class="profilo_voce">
-                    <div class="profilo_voce_label">
-                        <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['experience']); ?>:
-                    </div>
-                    <div class="profilo_voce_valore">
-                        <?php echo gdrcd_filter('out', floor($personaggio['esperienza'])); ?>
-                    </div>
-                </div>
-                <div class="profilo_voce">
-                    <div class="profilo_voce_label">
-                        <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['punti_fato']); ?>:
-                    </div>
-                    <div class="profilo_voce_valore">
-                        <?php echo gdrcd_filter('out', $personaggio['punti_fato']); ?>
-                    </div>
-                </div>
-                <hr />
-                <div class="profilo_voce">
-                    <div class="profilo_voce_label">
-                        <?php echo gdrcd_filter('out', $MESSAGE['interface']['sheet']['profile']['status']); ?>:
-                    </div>
-                    <div class="profilo_voce_valore">
-                        <?php echo gdrcd_filter('out', $personaggio['stato']); ?>
-                    </div>
-                </div>
-
-            </div>
-            <!-- Punteggi, salute, status, classe, razzat -->
-
-
-
         </div>
 
     </div><!-- Elenco abilità -->
@@ -287,8 +318,7 @@
     /*     * ******* CHIUSURA SCHEDA ********* */
 //Impedisci XSS nella musica
     $record['url_media'] = gdrcd_filter('fullurl', $record['url_media']);
-    if ($PARAMETERS['mode']['allow_audio'] == 'ON' && !$_SESSION['blocca_media'] && !empty($record['url_media'])) {
-        ?>
+    if ($PARAMETERS['mode']['allow_audio'] == 'ON' && !$_SESSION['blocca_media'] && !empty($record['url_media'])) {  ?>
         <audio autoplay>
             <source src="<?php echo $record['url_media']; ?>" type="audio/mpeg">
         </audio>

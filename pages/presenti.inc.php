@@ -1,6 +1,6 @@
 <?php include('../ref_header.inc.php'); /*Header comune*/ ?>
     <!-- Box presenti-->
-    <div class="pagina_presenti">
+    <div class="pagina_link_menu">
         <div class="page_title">
             <h2><?php echo gdrcd_filter('out', $MESSAGE['interface']['logged_users']['plur']); ?></h2>
         </div>
@@ -20,7 +20,7 @@
         $query = "SELECT personaggio.nome, personaggio.cognome, personaggio.permessi, personaggio.sesso, personaggio.id_razza, razza.sing_m, razza.sing_f, razza.icon, personaggio.disponibile, personaggio.is_invisible FROM personaggio LEFT JOIN razza ON personaggio.id_razza = razza.id_razza WHERE DATE_ADD(personaggio.ora_entrata, INTERVAL 2 MINUTE) > NOW() ORDER BY personaggio.ora_entrata, personaggio.nome";
         $result = gdrcd_query($query, 'result');
 
-        echo '<div class="luogo">'.$MESSAGE['interface']['logged_users']['logged_in'].'</li>';
+        echo '<div class="luogo">'.$MESSAGE['interface']['logged_users']['logged_in'].'</div>';
 
         while($record = gdrcd_query($result, 'fetch')) {
             //Stampo il PG

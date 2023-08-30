@@ -33,7 +33,7 @@ if (isset($_GET['css']))
     width: 210px; /*Width of left frame div*/
     height: 100%;
     overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-    border: 1px solid black;
+    
     border-radius: 5px
     }
 
@@ -49,17 +49,18 @@ if (isset($_GET['css']))
     top: 0;
     left: 210px; /*Set left value to WidthOfLeftFrameDiv*/
     right: 215px; /*Set right value to WidthOfRightFrameDiv*/
-    width: auto;
-    height: 100px; /*Height of top frame div*/
+    width: 55%;
+    margin:auto;
+    height: 170px; /*Height of top frame div*/
     overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-    border: 1px solid black;
+    
     border-radius: 5px
     
     }
 
     #maincontent{
     position: fixed;
-    top: 100px !important; /*Set top value to HeightOfTopFrameDiv*/
+    top: 210px !important; /*Set top value to HeightOfTopFrameDiv*/
     left: 210px; /*Set left value to WidthOfLeftFrameDiv*/
     right: 215px; /*Set right value to WidthOfRightFrameDiv*/
     bottom: 0;

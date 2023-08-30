@@ -35,23 +35,23 @@ if( ! empty($_SESSION['login'])) {
 /* INFORMAZIONI SU GDRCD */
 $PARAMETERS['info']['GDRCD'] = '5.6.0.5'; //versione di GDRCD
 
-/* PARAMETRI DI CONNESSIONE 
+/* PARAMETRI DI CONNESSIONE*/
 $PARAMETERS['database']['username'] = 'testUser';            //nome utente del database
 $PARAMETERS['database']['password'] = '@Fervm2021';            //password del database
 $PARAMETERS['database']['database_name'] = 'testlanddb';    //nome del database
-$PARAMETERS['database']['url'] = 'localhost:3306';        //indirizzo ip del database*/
+$PARAMETERS['database']['url'] = 'localhost:3306';         //indirizzo ip del database*/
 
-/* PARAMETRI DI CONNESSIONE PROD*/
+/* PARAMETRI DI CONNESSIONE PROD
 $PARAMETERS['database']['username'] = 'brancihotel';            //nome utente del database
 $PARAMETERS['database']['password'] = '';            //password del database
 $PARAMETERS['database']['database_name'] = 'my_brancihotel';    //nome del database
-$PARAMETERS['database']['url'] = 'localhost';        //indirizzo ip del database
+$PARAMETERS['database']['url'] = 'localhost';    */    //indirizzo ip del database
 
 /* HELP: Sostituire le diciture inserite tra le virgolette con i parametri di connessione al Database del proprio dominio. Essi sono forniti al momento della registrazione. Se non si e' in possesso di tali parametri consultare le FAQ della homepage dell'host che fornisce il dominio. Se non le si trovano li contattare lo staff dell'host. */
 
 /* INFORMAZIONI SUL SITO */
 $PARAMETERS['info']['site_name'] = 'Aristia'; //nome del gioco
-$PARAMETERS['info']['site_url'] = 'http://localhost/'; //indirizzo URL del gioco
+$PARAMETERS['info']['site_url'] = 'http://brancihotel.altervista.org/'; //indirizzo URL del gioco
 $PARAMETERS['info']['webmaster_name'] = 'Spartacus'; //nome e cognome del responsabile del sito
 $PARAMETERS['info']['webmaster_email'] = 'gestione@fervm.it'; //email ufficiale del webmaster (è visibile in homepage)
 $PARAMETERS['info']['homepage_name'] = 'Homepage'; //nome con il quale si indica la prima pagina visualizzata
@@ -185,8 +185,22 @@ $PARAMETERS['left_column']['box']['link_menu']['class'] = 'menu';
 $PARAMETERS['left_column']['box']['link_menu']['page'] = 'link_menu'; //Menu' del gioco.
 
 /*  COLONN DI DESTRA */
-$PARAMETERS['right_column']['box']['frame_presenti']['class'] = 'presenti';
+
+$PARAMETERS['right_column']['box']['avatar_scheda']['page']='avatar_scheda'; //Link alla scheda.
+$PARAMETERS['right_column']['box']['avatar_scheda']['class']='messages';
+$PARAMETERS['right_column']['box']['avatar_cultura']['page']='avatar_cultura'; 
+$PARAMETERS['right_column']['box']['avatar_cultura']['class']='messages'; //solo l'avatar della cultura selezionata
+$PARAMETERS['right_column']['box']['frame_presenti']['class'] = 'menu';
 $PARAMETERS['right_column']['box']['frame_presenti']['page'] = 'frame_presenti'; //Presenti.
+
+
+/* COLONNA SUPERIORE*/
+$PARAMETERS['top_column']['box']['master_news']['class']='menu_top';
+$PARAMETERS['top_column']['box']['master_news']['page']='master_news'; //News.
+$PARAMETERS['top_column']['box']['stato_cittadino']['page']='stato_citta'; //Link alla scheda.
+$PARAMETERS['top_column']['box']['stato_cittadino']['class']='menu_top';
+$PARAMETERS['top_column']['box']['master_special']['class']='menu_top';
+$PARAMETERS['top_column']['box']['master_special']['page']='master_special'; //News.
 
 /* NOMI CHIAVE DEL GIOCO */
 $PARAMETERS['names']['users_name']['sing'] = 'Quirita'; //nome singolare degli utenti
@@ -196,7 +210,7 @@ $PARAMETERS['names']['currency']['plur'] = 'Bottino'; //nome plurale della valut
 $PARAMETERS['names']['currency']['short'] = 'BT'; //nome breve della valuta nel gioco
 $PARAMETERS['names']['private_message']['sing'] = 'Messaggio'; //nome dei messaggi privati tra utenti (singolare)
 $PARAMETERS['names']['private_message']['plur'] = 'Messaggi'; //nome dei messaggi privati tra utenti (plurale)
-$PARAMETERS['names']['private_message']['image_file'] = ''; //immagine del link ai messaggi
+$PARAMETERS['names']['private_message']['image_file'] = 'pennino.png'; //immagine del link ai messaggi
 $PARAMETERS['names']['private_message']['image_file_onclick'] = ''; //immagine al passaggio del mouse dei messaggi
 $PARAMETERS['names']['private_message']['image_file_new'] = ''; //immagine nuovi messaggi
 $PARAMETERS['names']['forum']['sing'] = 'Bacheca'; //nome dei forum (singolare)
@@ -258,17 +272,25 @@ $PARAMETERS['settings']['messages_limit'] = 50;//Numero di messaggi privati oltr
 $PARAMETERS['settings']['minimum_employment'] = 10;//Numero di giorni entro i quali non è possibile scegliere un'altro lavoro o essere esclusi da una gilda.
 $PARAMETERS['settings']['guilds_limit'] = 1;//Numero massimo di gilde a cui si può essere affiliati. Il numero tiene conto delle gilde di cui un personaggio è membro e dell'eventuale lavoro indipendente che svolte. In ogni caso il sistema permette di svolgere un unico lavoro indipendente. La paga giornaliera del personaggio e' la somma degli introiti di tutti i ruoli di gilda e dell'eventuale lavoro che riveste.
 $PARAMETERS['settings']['resell_price'] = 30; //Percentuale di svalutazione degli oggetti rivenduti al mercato.
-$PARAMETERS['settings']['first_px'] = 0;//Esperienza iniziale. Se il gioco non prevede abilità dovrebbe essere 0.
-$PARAMETERS['settings']['max_hp'] = 100;//Punti ferita.
-$PARAMETERS['settings']['px_x_rank'] = 1; //Costo in px per rango di abilità. Il valore di questo campo viene moltiplicato al rango successivo dell'abità per determinarne il costo. Es: Se il valore è 10 e il rango da aquisite è 5 il suo costo è 5x10=50px.
+$PARAMETERS['settings']['first_px'] = 0;//Gloria iniziale. Se il gioco non prevede abilità dovrebbe essere 0.
+$PARAMETERS['settings']['max_hp'] = 5;//Punti ferita.
+$PARAMETERS['settings']['px_x_rank'] = 15; //Costo in px per rango di abilità. Il valore di questo campo viene moltiplicato al rango successivo dell'abità per determinarne il costo. Es: Se il valore è 10 e il rango da aquisite è 5 il suo costo è 5x10=50px.
+$PARAMETERS['settings']['px_x_rank_over_20'] = 100; //costo in gloria per le statistiche maggiori di 20
+$PARAMETERS['settings']['px_x_rank_over_25'] = 500; //costo in gloria per le statistiche maggiori di 20
+$PARAMETERS['settings']['px_x_stat'] = 15; //Costo in gloria per le statistiche minori di 20
+$PARAMETERS['settings']['px_x_stat_over_20'] = 100; //Costo in gloria per le statistiche minori di 20
+$PARAMETERS['settings']['px_x_stat_over_25'] = 500; //Costo in gloria per le statistiche minori di 20
 $PARAMETERS['settings']['skills_cap'] = 10;//Punteggio massimo per un'abilità.
 $PARAMETERS['settings']['initial_cars_cap'] = 10;//Punteggio massimo iniziale per una caratteristica.
 $PARAMETERS['settings']['initial_tratti'] = 10;//Punti da spendere nei tratti caratteriali dopo l'iscrizione per modificare i tratti della cultura scelta.
 $PARAMETERS['settings']['cars_base'] = 10;//Punteggio base delle Stastistiche fisiche che viene sommato all'iscrizione.
-$PARAMETERS['settings']['cars_cap'] = 20;//Punteggio massimo per una caratteristica.
+$PARAMETERS['settings']['cars_cap'] = 50;//Punteggio massimo per una caratteristica.
 $PARAMETERS['settings']['cars_sum'] = 10;//Punteggio totale da distribuire tra le caratteristiche in fase di iscrizione.
 $PARAMETERS['settings']['view_logs'] = 10; //Numero di log visualizzato.
 $PARAMETERS['settings']['auto_salary'] = 'OFF'; //ON per attivare l'accredito automatico dello stipendio al primo login
+
+$PARAMETERS['settings']['valid_action_lengh'] = '1000'; //Il numero di caratteri che deve avere una azione per essere conteggiata per il pacchetto degli EXP 
+$PARAMETERS['settings']['day_per_exp'] = '15'; //Il numero di giorni ogni quanto viene poi erogato il pacchetto di exp.
 
 
 
@@ -727,6 +749,11 @@ $PARAMETERS['user']['stats']['access_level'] = USER;
 /* PANNELLO GESTIONE */
 $PARAMETERS['administration_page_name'] = 'Gestione';
 $PARAMETERS['administration']['image_file'] = '';
+//NEWS
+$PARAMETERS['administration']['news']['text']='Gestione News';
+$PARAMETERS['administration']['news']['url']='main.php?page=gestione_news';
+$PARAMETERS['administration']['news']['access_level']=GAMEMASTER;
+// FINE NEWS
 $PARAMETERS['administration']['log_chat']['text'] = 'Log chat';
 $PARAMETERS['administration']['log_chat']['url'] = 'main.php?page=log_chat';
 $PARAMETERS['administration']['log_chat']['access_level'] = MODERATOR;

@@ -15,6 +15,13 @@ div.presenti iframe.iframe_presenti {
     background-color: transparent;
 }
 
+iframe.pagina_link_menu {
+	background-image: url("imgs/sfondo-box.png");
+	text-align: center;
+	width: 184px;
+	margin: auto;
+}
+
 div.presenti iframe.iframe_presenti body.transparent_body {
     background-color: none;
 }
@@ -23,7 +30,13 @@ div.luogo {
     margin: 10px 0 0 0;
     font-size: 13px;
     font-weight: bolder;
+    padding: 5px;
+	color: #FFDBAD;
+	font-family: 'Alegreya SC', serif;
+	text-transform: uppercase;
 }
+
+
 
 div.presente {
     font-weight: normal;
@@ -105,3 +118,41 @@ img.presenti_ico {
     height: 10px;
     border: none;
 }
+
+
+/*
+Brancix: qui iniziano le personalizzazioni della tabella dei presenti
+*/
+
+table.table_presenti {
+    width: 80%;
+    margin: auto;
+}
+
+tr.riga_intesazione_presenti{
+    
+}
+
+
+tr.nome_mappa_presenti{
+    font-size: 25px;
+}
+
+tr.luogo_presenti{
+    
+}
+
+td.colonna_presenti{
+   
+border: 1px solid #333333;
+color: #9d9d9c;
+padding: 7px;
+background-image: url("imgs/scheda/sfondo-box.png");
+box-shadow: 0px 0px 20px 3px inset #000;
+
+}
+
+.cultura_ico{
+    width: 35px;
+}
+

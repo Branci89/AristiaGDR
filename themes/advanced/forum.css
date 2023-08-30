@@ -11,7 +11,7 @@ div.pagina_forum {
 div.pagina_forum div.panels_box {
     border: none;
     margin-top: 10px;
-    background-color: #D1D1D1;
+    background-image: url("imgs/sfondo-chat.png");
     -moz-border-radius: 5px; /* Bordi arrotondati */
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
